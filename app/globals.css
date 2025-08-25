@@ -4,25 +4,22 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+    --color-primary: var(--primary);
+    --color-primary-light: var(--primary-light);
     --color-accent: var(--accent);
     --color-secondary: var(--secondary);
-    --color-primary: var(--primary);
-    --radius-sm: calc(var(--radius) - 4px);
-    --radius-md: calc(var(--radius) - 2px);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) + 4px);
 }
 
 :root {
-    --radius: 0.625rem;
     --primary: #FFF;
+    --primary-light: #2D2E33;
     --secondary: #1e1f20;
     --accent: #2ec7d6;
 }
 
 .dark {
-    --radius: 0.625rem;
     --primary: #1e1f20;
+    --primary-light: #2D2E33;
     --secondary: #FFF;
     --accent: #2ec7d6;
 }
