@@ -5,6 +5,7 @@ import { SidebarProvider } from '@/components/ui/sidebar';
 import { ThemeProvider } from '@/app/providers/theme-provider';
 import { ReactNode } from 'react';
 import Aside from '@/app/components/aside';
+import { UserProvider } from '@/app/providers/user-provider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -33,16 +34,18 @@ export default function RootLayout({
       enableSystem
       disableTransitionOnChange
     >
-      <SidebarProvider>
-        <main className='flex'>
-          <Aside />
-          <div className='bg-primary w-[calc(100dvw-var(--sidebar-width))] p-8'>
-            <div className='bg-primary-light p-8 rounded-md shadow-md'>
-              {children}
+      <UserProvider>
+        <SidebarProvider>
+          <div className='flex'>
+            <Aside />
+            <div className='bg-primary w-[calc(100dvw-var(--sidebar-width))] p-8'>
+              <div className='bg-primary-light p-8 rounded-md shadow-md'>
+                {children}
+              </div>
             </div>
           </div>
-        </main>
-      </SidebarProvider>
+        </SidebarProvider>
+      </UserProvider>
     </ThemeProvider>
   );
 }

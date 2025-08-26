@@ -1,0 +1,12 @@
+import { z } from 'zod';
+
+export const zOrganization = z.object({
+  id: z.number(),
+  name: z.string(),
+  color: z.string(),
+  logo: z.string(),
+  contactEmail: z.string().nullable(),
+  createdAt: z.string(),
+});
+
+export type TOrganization = z.infer<typeof zOrganization>;
