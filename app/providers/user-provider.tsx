@@ -40,5 +40,8 @@ export const useUserContext = () => {
   if (!context) {
     throw new Error('conxtex not defined');
   }
+  if (!context.user) {
+    throw new Error('conxtex not defined');
+  }
   return context;
 };

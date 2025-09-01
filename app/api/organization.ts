@@ -6,8 +6,8 @@ async function update(data: TOrganization): Promise<{ id: string }> {
   return response.data;
 }
 
-async function get(organizationId: number): Promise<TOrganization> {
-  const response = await apiService.get('/organization/' + organizationId);
+async function get(): Promise<TOrganization> {
+  const response = await apiService.get('/organization');
   return response.data;
 }
 

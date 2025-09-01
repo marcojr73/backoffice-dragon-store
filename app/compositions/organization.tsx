@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
 import { TOrganization } from '@/app/schemas/organization.zod';
 import { organizationApi } from '@/app/api/organization';
+import PageBox from '@/app/components/page-box';
 
 const Organization = ({ organization }: { organization: TOrganization }) => {
   const { register, handleSubmit } = useForm<TOrganization>({
@@ -16,18 +17,15 @@ const Organization = ({ organization }: { organization: TOrganization }) => {
   });
 
   const onSubmit = async (data: TOrganization) => {
-    console.log('Dados do formulário:', data);
-
     try {
-      const response = await organizationApi.update(data);
+      await organizationApi.update({ ...data, id: organization.id });
     } catch (error) {
       console.error('Erro ao salvar marca:', error);
     }
   };
 
   return (
-    <section className='flex flex-col gap-4'>
-      <h1 className='text-xl font-bold'>Marca</h1>
+    <PageBox title={'Marca'}>
       <form
         className='grid grid-cols-2 gap-4'
         onSubmit={handleSubmit(onSubmit)}
@@ -58,7 +56,7 @@ const Organization = ({ organization }: { organization: TOrganization }) => {
           <Button>Salvar</Button>
         </div>
       </form>
-    </section>
+    </PageBox>
   );
 };
 

@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 const Page = () => {
   const { user } = useUserContext();
   const { data, fetch } = useQuery({
-    fetchFunction: () => organizationApi.get(user!.organization.id),
+    fetchFunction: () => organizationApi.get(),
     schema: zOrganization,
     onError: error => {
       console.log(error);

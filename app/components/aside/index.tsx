@@ -15,6 +15,7 @@ import { Inbox, LucideProps, Settings, Tag, User, Users } from 'lucide-react';
 import ToggleTheme from '@/app/components/toggle-theme/toggle-theme';
 import Image from 'next/image';
 import logo from '@assets/logos/dragon.png';
+import { Button } from '@/components/ui/button';
 
 function Aside() {
   const items: {
@@ -26,27 +27,27 @@ function Aside() {
   }[] = [
     {
       title: 'Marca',
-      url: 'backoffice/marca',
+      url: '/backoffice/marca',
       icon: Tag,
     },
     {
       title: 'Produtos',
-      url: 'backoffice/produtos',
+      url: '/backoffice/produtos',
       icon: Inbox,
     },
     {
       title: 'Colaboradores',
-      url: 'backoffice/colaboradores',
+      url: '/backoffice/colaboradores',
       icon: User,
     },
     {
       title: 'Times',
-      url: 'backoffice/times',
+      url: '/backoffice/times',
       icon: Users,
     },
     {
-      title: 'Settings',
-      url: 'backoffice/configuracoes',
+      title: 'Configurações',
+      url: '/backoffice/configuracoes',
       icon: Settings,
     },
   ];
@@ -69,15 +70,17 @@ function Aside() {
           <SidebarGroupLabel>Customização da Loja</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map(item => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
+              {items.map((item, index) => (
+                <a
+                  href={item.url}
+                  key={index}
+                  className={'flex w-full gap-2 justify-start'}
+                >
+                  <Button variant={'ghost'} className={'justify-start w-full'}>
+                    <item.icon />
+                    <span>{item.title}</span>
+                  </Button>
+                </a>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
