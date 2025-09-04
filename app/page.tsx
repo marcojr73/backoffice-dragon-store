@@ -57,9 +57,6 @@ export default function Home() {
           <CardDescription>
             Digite seu e-mail e senha para continuar
           </CardDescription>
-          <CardAction>
-            <Button variant='link'>Sign Up</Button>
-          </CardAction>
         </CardHeader>
         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-6'>
           <CardContent>

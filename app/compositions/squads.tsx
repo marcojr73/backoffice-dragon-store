@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import PageBox from '@/app/components/page-box';
+import { TSquad } from '@/app/schemas/squads.zod';
+import { Button } from '@/components/ui/button';
 import {
   Table,
   TableBody,
@@ -9,111 +11,108 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Button } from '@/components/ui/button';
 import { Pencil, Trash } from 'lucide-react';
-import { TUser } from '@/app/schemas/user.zod';
-import EditUser from '@/app/components/edit-user.tsx';
-import { userApi } from '@/app/api/user';
+import EditSquad from '@/app/components/edit-squad.tsx';
 import { AlertConfirmDialog } from '@/app/components/alert-confirm-dialog.tsx';
+import { squadsApi } from '@/app/api/squads';
 import Image from 'next/image';
 
-const Users = ({ users, fetch }: { users: TUser[]; fetch: () => void }) => {
-  const [userToEdit, setUserToEdit] = useState<{
+const Squads = ({ squads, fetch }: { squads: TSquad[]; fetch: () => void }) => {
+  const [squadToEdit, setSquadToEdit] = useState<{
     isOpen: boolean;
-    user: TUser | null;
+    squad: TSquad | null;
   }>({
     isOpen: false,
-    user: null,
+    squad: null,
   });
 
-  const [userToDelete, setUserToDelete] = useState<{
+  const [squadToDelete, setSquadToDelete] = useState<{
     isOpen: boolean;
-    user: TUser | null;
+    squad: TSquad | null;
   }>({
     isOpen: false,
-    user: null,
+    squad: null,
   });
 
-  function openDeleteDialog(user: TUser | null = null) {
-    setUserToDelete({
+  function openEditDialog(squad: TSquad | null = null) {
+    setSquadToEdit({
       isOpen: true,
-      user: user,
+      squad,
     });
   }
 
-  function openEditDialog(user: TUser | null = null) {
-    setUserToEdit({
+  function openDeleteDialog(squad: TSquad | null = null) {
+    setSquadToDelete({
       isOpen: true,
-      user: user,
+      squad,
     });
-  }
-
-  function closeDeleteDialog(shouldReload: boolean = false) {
-    setUserToDelete({ isOpen: false, user: null });
-    if (shouldReload) fetch();
   }
 
   function closeEditDialog(shouldReload: boolean = false) {
-    setUserToEdit({ isOpen: false, user: null });
+    setSquadToEdit({ isOpen: false, squad: null });
     if (shouldReload) fetch();
   }
 
-  async function deleteUser() {
+  async function deleteProduct() {
     try {
-      await userApi.deleteUser(userToDelete.user!.id);
+      await squadsApi.deleteSquad(squadToDelete.squad!.id);
       closeDeleteDialog(true);
     } catch (error) {
       console.warn(error);
     }
   }
 
+  function closeDeleteDialog(shouldReload: boolean = false) {
+    setSquadToDelete({ isOpen: false, squad: null });
+    if (shouldReload) fetch();
+  }
+
   return (
     <PageBox
-      title={'Colaboradores da organização'}
+      title={'Times'}
       header={
         <Button
           variant={'default'}
           className='cursor-pointer'
           onClick={() => openEditDialog()}
         >
-          Novo colaborador
+          Novo time
         </Button>
       }
     >
       <Table>
-        <TableCaption>
-          Lista de colaboradores cadastrados: {users.length}
-        </TableCaption>
+        <TableCaption>Lista de times cadastrados: {squads.length}</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className='font-bold'>Foto</TableHead>
+            <TableHead className='font-bold'>Logo</TableHead>
             <TableHead className='font-bold'>Nome</TableHead>
-            <TableHead className='font-bold'>E-mail</TableHead>
+            <TableHead className='font-bold'>
+              <span>Pontos</span>
+            </TableHead>
             <TableHead className='w-[100px] font-bold'>Ações</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody className={'cursor-default'}>
-          {users.map((user, index) => (
+          {squads.map((squad, index) => (
             <TableRow key={index}>
               <TableCell width={100}>
-                {user.picture && (
+                {squad.logo && (
                   <Image
-                    src={user.picture}
-                    alt={'Foto de perfil do usuário'}
-                    className={'rounded-full w-8 h-8'}
+                    src={squad.logo}
+                    alt={'Logo da squad'}
                     width={40}
                     height={40}
                   />
                 )}
               </TableCell>
-              <TableCell>{user.userName}</TableCell>
-              <TableCell>{user.email}</TableCell>
+              <TableCell>{squad.name}</TableCell>
+              <TableCell>{squad.score}</TableCell>
               <TableCell>
                 <Button
                   variant='ghost'
                   className={'cursor-pointer'}
                   size='icon'
-                  onClick={() => openEditDialog(user)}
+                  onClick={() => openEditDialog(squad)}
                 >
                   <Pencil className='h-4 w-4' />
                 </Button>
@@ -121,7 +120,7 @@ const Users = ({ users, fetch }: { users: TUser[]; fetch: () => void }) => {
                   variant='ghost'
                   className={'cursor-pointer'}
                   size='icon'
-                  onClick={() => openDeleteDialog(user)}
+                  onClick={() => openDeleteDialog(squad)}
                 >
                   <Trash className='h-4 w-4' />
                 </Button>
@@ -130,21 +129,21 @@ const Users = ({ users, fetch }: { users: TUser[]; fetch: () => void }) => {
           ))}
         </TableBody>
       </Table>
-      {userToEdit.isOpen && (
-        <EditUser user={userToEdit.user} close={closeEditDialog} />
+      {squadToEdit.isOpen && (
+        <EditSquad squad={squadToEdit.squad} close={closeEditDialog} />
       )}
       <AlertConfirmDialog
-        isOpen={userToDelete.isOpen}
-        title={'Tem certeza que deseja deletar o usuário?'}
+        isOpen={squadToDelete.isOpen}
+        title={'Tem certeza que deseja deletar o time?'}
         description={
-          'Esta ação não pode ser desfeita. Isso excluirá permanentemente sua' +
-          'conta e removerá seus dados de nossos servidores.'
+          'Esta ação não pode ser desfeita. Isso excluirá permanentemente o' +
+          'time e removerá seus dados de nossos servidores.'
         }
-        onConfirm={deleteUser}
+        onConfirm={deleteProduct}
         close={closeDeleteDialog}
       />
     </PageBox>
   );
 };
 
-export default Users;
+export default Squads;

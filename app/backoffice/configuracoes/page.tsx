@@ -1,7 +1,8 @@
 import React from 'react';
+import PageBox from '@/app/components/page-box';
 
 const Settings = () => {
-    return (<h1>Eu sou a tela de configurações</h1>);
+  return <PageBox title={'Configurações'}>Tela de configurações</PageBox>;
 };
 
 export default Settings;

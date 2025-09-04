@@ -38,10 +38,8 @@ export default function RootLayout({
         <SidebarProvider>
           <div className='flex'>
             <Aside />
-            <div className='bg-primary w-[calc(100dvw-var(--sidebar-width))] p-8'>
-              <div className='bg-primary-light p-8 rounded-md shadow-md'>
-                {children}
-              </div>
+            <div className='bg-primary w-[calc(100dvw-var(--sidebar-width))] p-6 h-screen'>
+              {children}
             </div>
           </div>
         </SidebarProvider>
