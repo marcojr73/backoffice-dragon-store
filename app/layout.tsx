@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/app/providers/theme-provider';
 import { ReactNode } from 'react';
-import { UserProvider } from '@/app/providers/user-provider';
+import { Toaster } from '@/components/ui/sonner';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -36,6 +36,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster
+            position={'bottom-center'}
+            toastOptions={{
+              style: { backgroundColor: 'var(--primary)', borderRadius: '8px' },
+            }}
+          />
           <main className='flex'>{children}</main>
         </ThemeProvider>
       </body>

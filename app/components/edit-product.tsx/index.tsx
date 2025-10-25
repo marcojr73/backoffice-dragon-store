@@ -1,7 +1,7 @@
 import React from 'react';
 import { TProduct } from '@/app/schemas/products.zod';
 import { useForm } from 'react-hook-form';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/form-inputs/input';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -20,7 +20,7 @@ const EditProduct = ({
   product: TProduct | null;
   close: (shouldReload?: boolean) => void;
 }) => {
-  const { register, handleSubmit } = useForm<TProduct>({
+  const { handleSubmit, control } = useForm<TProduct>({
     defaultValues: {
       name: product?.name ?? '',
       description: product?.description ?? '',
@@ -57,24 +57,29 @@ const EditProduct = ({
           <Input
             label={'Nome'}
             placeholder='Nome do produto'
-            {...register('name')}
+            control={control}
+            name={'name'}
           />
           <Input
             label={'Descrição'}
             type={'textarea'}
             placeholder='Descrição do produto'
-            {...register('description')}
+            control={control}
+            name={'description'}
           />
           <Input
             label={'Valor'}
             type={'number'}
             placeholder='Valor em moedas'
-            {...register('value')}
+            control={control}
+            name={'value'}
           />
           <Input
             label={'Foto'}
+            type={'file'}
             placeholder='Foto do produto'
-            {...register('picture')}
+            control={control}
+            name={'picture'}
           />
           <DialogFooter>
             <Button type={'submit'}>Salvar</Button>

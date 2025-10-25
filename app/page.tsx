@@ -2,7 +2,6 @@
 
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -10,7 +9,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/form-inputs/input';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import Image from 'next/image';
@@ -20,11 +19,16 @@ import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const {
-    register,
+    control,
     setError,
     handleSubmit,
     formState: { errors },
-  } = useForm<TSignIn>();
+  } = useForm<TSignIn>({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
   const router = useRouter();
 
   const onSubmit = async (data: TSignIn) => {
@@ -63,20 +67,20 @@ export default function Home() {
             <div className='flex flex-col gap-6'>
               <Input
                 label={'Email'}
-                id='email'
                 type='email'
                 placeholder='m@example.com'
                 error={errors.email?.message}
                 required
-                {...register('email')}
+                control={control}
+                name={'email'}
               />
 
               <Input
-                id='password'
                 type='password'
                 required
                 label={'Senha'}
-                {...register('password')}
+                control={control}
+                name={'password'}
                 error={errors.password?.message}
               />
             </div>

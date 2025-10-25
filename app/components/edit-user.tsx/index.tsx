@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/form-inputs/input';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -12,6 +12,7 @@ import {
 import { Pencil } from 'lucide-react';
 import { TUser } from '@/app/schemas/user.zod';
 import { userApi } from '@/app/api/user';
+import { toast } from 'sonner';
 
 const EditUser = ({
   user,
@@ -20,7 +21,7 @@ const EditUser = ({
   user: TUser | null;
   close: (shouldReload?: boolean) => void;
 }) => {
-  const { register, handleSubmit } = useForm<TUser>({
+  const { control, handleSubmit } = useForm<TUser>({
     defaultValues: {
       userName: user?.userName ?? '',
       email: user?.email ?? '',
@@ -40,6 +41,7 @@ const EditUser = ({
         await userApi.create(data);
       }
       close(true);
+      toast.success('Sucesso');
     } catch (error) {
       console.error('Erro ao salvar:', error);
     }
@@ -57,24 +59,37 @@ const EditUser = ({
               </div>
             </DialogTitle>
           </DialogHeader>
-          <Input label={'Nome'} {...register('userName')} />
-          <Input label={'E-mail'} {...register('email')} />
-          <Input label={'Foto'} {...register('picture')} />
+          <Input label={'Nome'} control={control} name={'userName'} />
+          <Input label={'E-mail'} control={control} name={'email'} />
+          <Input
+            label={'Foto'}
+            type={'file'}
+            control={control}
+            name={'picture'}
+          />
           <Input
             label={'Administrador'}
             type={'switch'}
-            {...register('isAdmin')}
+            control={control}
+            name={'isAdmin'}
           />
-          <Input label={'Senha'} {...register('password')} type={'password'} />
+          <Input
+            label={'Senha'}
+            control={control}
+            name={'password'}
+            type={'password'}
+          />
           <Input
             type={'number'}
             label={'Moedas para enviar'}
-            {...register('coins')}
+            control={control}
+            name={'coins'}
           />
           <Input
             type={'number'}
             label={'Moedas para consumir'}
-            {...register('gas')}
+            control={control}
+            name={'gas'}
           />
           <DialogFooter>
             <Button type={'submit'}>Salvar</Button>

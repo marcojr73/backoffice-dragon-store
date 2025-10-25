@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/form-inputs/input';
 import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
 import { TOrganization } from '@/app/schemas/organization.zod';
@@ -7,7 +7,7 @@ import { organizationApi } from '@/app/api/organization';
 import PageBox from '@/app/components/page-box';
 
 const Organization = ({ organization }: { organization: TOrganization }) => {
-  const { register, handleSubmit } = useForm<TOrganization>({
+  const { register, handleSubmit, control } = useForm<TOrganization>({
     defaultValues: {
       name: organization.name,
       color: organization.color,
@@ -17,6 +17,7 @@ const Organization = ({ organization }: { organization: TOrganization }) => {
   });
 
   const onSubmit = async (data: TOrganization) => {
+    console.log(data);
     try {
       await organizationApi.update({ ...data, id: organization.id });
     } catch (error) {
@@ -34,23 +35,27 @@ const Organization = ({ organization }: { organization: TOrganization }) => {
           label={'Logo da organização'}
           type={'file'}
           placeholder='Clique para selecionar um arquivo'
-          {...register('logo')}
+          control={control}
+          name={'logo'}
         />
         <Input
           label={'nome da organização'}
           placeholder='Digite um nome'
-          {...register('name')}
+          control={control}
+          name={'name'}
         />
         <Input
           label={'Cor de destaque da organização'}
           type='color'
           placeholder='Selecione uma cor'
-          {...register('color')}
+          control={control}
+          name={'color'}
         />
         <Input
           label={'E-mail de contato'}
           placeholder='Digite o e-mail para notificações'
-          {...register('contactEmail')}
+          control={control}
+          name={'contactEmail'}
         />
         <div className='col-span-2 flex w-full justify-end'>
           <Button>Salvar</Button>

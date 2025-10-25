@@ -6,16 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="f25ec39c-1671-44be-acdd-ce390bb2eb7b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/aside/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/aside/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/backoffice/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/edit-product.tsx/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/edit-product.tsx/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/edit-squad.tsx/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/edit-squad.tsx/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/edit-user.tsx/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/edit-user.tsx/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/compositions/organization.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/compositions/organization.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/input.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ui/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eslint.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/eslint.config.mjs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,37 +37,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;release&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
-    &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/marco/uex/dragon-store/backoffice/app&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.Next.js: server-side.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\marco\\uex\\dragon-store\\backoffice\\node_modules\\prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\marco\\uex\\dragon-store\\backoffice\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "release",
+    "ignore.virus.scanning.warn.message": "true",
+    "js.debugger.nextJs.config.created.client": "true",
+    "js.debugger.nextJs.config.created.server": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/marco/uex/dragon-store/backoffice/components/ui/form-inputs",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.Next.js: server-side.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\marco\\uex\\dragon-store\\backoffice\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "ts.external.directory.path": "C:\\Users\\marco\\uex\\dragon-store\\backoffice\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\marco\uex\dragon-store\backoffice\app" />
-      <recent name="C:\Users\marco\uex\dragon-store\backoffice" />
+      <recent name="C:\Users\marco\uex\dragon-store\backoffice\components\ui\form-inputs" />
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\components" />
-      <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\providers" />
+      <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\schemas" />
+      <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\api" />
+      <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\compositions" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\marco\uex\dragon-store\backoffice\components\ui\form-inputs" />
+      <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\compositions" />
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\app" />
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\backoffice" />
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\components\toggle-theme" />
@@ -115,7 +121,29 @@
       <workItem from="1756000343548" duration="3864000" />
       <workItem from="1756084047450" duration="1679000" />
       <workItem from="1756153562355" duration="2864000" />
-      <workItem from="1756156475397" duration="1377000" />
+      <workItem from="1756156475397" duration="1501000" />
+      <workItem from="1756207816653" duration="20000" />
+      <workItem from="1756241176163" duration="5470000" />
+      <workItem from="1756327059441" duration="1755000" />
+      <workItem from="1756580192335" duration="6925000" />
+      <workItem from="1756647046549" duration="4992000" />
+      <workItem from="1756657306258" duration="21622000" />
+      <workItem from="1756760838221" duration="580000" />
+      <workItem from="1756995266525" duration="2530000" />
+      <workItem from="1757004606826" duration="1408000" />
+      <workItem from="1757006034859" duration="2277000" />
+      <workItem from="1757099666254" duration="746000" />
+      <workItem from="1757415198340" duration="4000" />
+      <workItem from="1757415298043" duration="633000" />
+      <workItem from="1757596023769" duration="327000" />
+      <workItem from="1759166006803" duration="1596000" />
+      <workItem from="1759255065987" duration="1193000" />
+      <workItem from="1759276346728" duration="148000" />
+      <workItem from="1759324341222" duration="371000" />
+      <workItem from="1759683535666" duration="632000" />
+      <workItem from="1760103879461" duration="20000" />
+      <workItem from="1760473277915" duration="32000" />
+      <workItem from="1761413532922" duration="12034000" />
     </task>
     <servers />
   </component>

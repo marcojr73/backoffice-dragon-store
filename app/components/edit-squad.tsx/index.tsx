@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/form-inputs/input';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -20,7 +20,7 @@ const EditSquad = ({
   squad: TSquad | null;
   close: (shouldReload?: boolean) => void;
 }) => {
-  const { register, handleSubmit } = useForm<TSquad>({
+  const { control, handleSubmit } = useForm<TSquad>({
     defaultValues: {
       name: squad?.name ?? '',
       description: squad?.description ?? '',
@@ -58,30 +58,36 @@ const EditSquad = ({
           <Input
             label={'Nome'}
             placeholder='Nome do time'
-            {...register('name')}
+            control={control}
+            name={'name'}
           />
           <Input
             label={'Descrição'}
             type={'textarea'}
             placeholder='Descrição do time'
-            {...register('description')}
+            control={control}
+            name={'description'}
           />
           <Input
             label={'Pontuação'}
             type={'number'}
             placeholder='Pontuação do time'
-            {...register('score')}
+            control={control}
+            name={'score'}
           />
           <Input
             label={'Foto'}
+            type={'file'}
             placeholder='Foto do time'
-            {...register('logo')}
+            control={control}
+            name={'logo'}
           />
           <Input
             label={'Cor'}
             type={'color'}
             placeholder='Cor principal que representa o time'
-            {...register('color')}
+            control={control}
+            name={'color'}
           />
           <DialogFooter>
             <Button type={'submit'}>Salvar</Button>
