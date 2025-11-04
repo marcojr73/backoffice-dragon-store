@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '@/lib/utils';
+import { cn } from '@/app/utils/utils';
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';
 
 const TextAreaInput = <T extends FieldValues>({

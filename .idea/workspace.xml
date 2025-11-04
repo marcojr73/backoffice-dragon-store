@@ -6,15 +6,44 @@
   <component name="ChangeListManager">
     <list default="true" id="f25ec39c-1671-44be-acdd-ce390bb2eb7b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/squads.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/squads.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/backoffice/marca/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/backoffice/marca/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/backoffice/produtos/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/backoffice/recompensas/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/aside/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/aside/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/components/edit-product.tsx/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/edit-product.tsx/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/components/edit-squad.tsx/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/edit-squad.tsx/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/edit-user.tsx/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/edit-user.tsx/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/compositions/organization.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/compositions/organization.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/compositions/products.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/compositions/products.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/compositions/squads.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/compositions/squads.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/hooks/use-query.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/hooks/use-query.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/organization.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/organization.zod.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/products.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/products.zod.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/squads.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/squads.zod.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/alert-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/alert-dialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/breadcrumb.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/breadcrumb.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/dialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/dropdown-menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/dropdown-menu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/form-inputs/file-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/file-input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/form-inputs/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/form-inputs/switch-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/switch-input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/form-inputs/text-area-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/text-area-input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/form-inputs/text-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/text-input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/label.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/label.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/separator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/separator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/shadcn-io/spinner/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/shadcn-io/spinner/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/sheet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/sheet.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ui/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/skeleton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/skeleton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/switch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/switch.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/textarea.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/textarea.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/tooltip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/tooltip.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/use-mobile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/hooks/use-mobile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/format.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/format.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -37,31 +66,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "release",
-    "ignore.virus.scanning.warn.message": "true",
-    "js.debugger.nextJs.config.created.client": "true",
-    "js.debugger.nextJs.config.created.server": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Users/marco/uex/dragon-store/backoffice/components/ui/form-inputs",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.Next.js: server-side.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\marco\\uex\\dragon-store\\backoffice\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "C:\\Users\\marco\\uex\\dragon-store\\backoffice\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;release&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
+    &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/marco/uex/dragon-store/backoffice/components/ui/form-inputs&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.Next.js: server-side.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\marco\\uex\\dragon-store\\backoffice\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\marco\\uex\\dragon-store\\backoffice\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\components\ui\form-inputs" />
@@ -71,11 +100,11 @@
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\compositions" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\utils" />
+      <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\hooks" />
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\components\ui\form-inputs" />
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\compositions" />
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\app" />
-      <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\backoffice" />
-      <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\components\toggle-theme" />
     </key>
   </component>
   <component name="RunManager" selected="npm.Next.js: server-side">
@@ -143,7 +172,14 @@
       <workItem from="1759683535666" duration="632000" />
       <workItem from="1760103879461" duration="20000" />
       <workItem from="1760473277915" duration="32000" />
-      <workItem from="1761413532922" duration="12034000" />
+      <workItem from="1761413532922" duration="12686000" />
+      <workItem from="1761934977191" duration="4118000" />
+      <workItem from="1762122359266" duration="9855000" />
+      <workItem from="1762172286103" duration="6909000" />
+      <workItem from="1762213713560" duration="1225000" />
+      <workItem from="1762257399867" duration="7000" />
+      <workItem from="1762259199782" duration="702000" />
+      <workItem from="1762275585558" duration="5550000" />
     </task>
     <servers />
   </component>

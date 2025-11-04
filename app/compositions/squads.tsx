@@ -18,6 +18,8 @@ import { squadsApi } from '@/app/api/squads';
 import Image from 'next/image';
 
 const Squads = ({ squads, fetch }: { squads: TSquad[]; fetch: () => void }) => {
+  console.log(squads);
+
   const [squadToEdit, setSquadToEdit] = useState<{
     isOpen: boolean;
     squad: TSquad | null;

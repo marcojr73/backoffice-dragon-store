@@ -6,6 +6,8 @@ const zProduct = z.object({
   description: z.string().nullable(),
   value: z.number(),
   picture: z.string(),
+  availableStartAt: z.union([z.string()]).nullable(),
+  availableEndAt: z.union([z.string()]).nullable(),
 });
 
 export const zProducts = z.array(zProduct);

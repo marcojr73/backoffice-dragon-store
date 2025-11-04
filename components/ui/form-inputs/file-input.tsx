@@ -3,7 +3,7 @@ import { Control, Controller, FieldValues, Path } from 'react-hook-form';
 import { ImageUp } from 'lucide-react';
 import Image from 'next/image';
 import * as React from 'react';
-import { format } from '@/lib/format';
+import { format } from '@/app/utils/format';
 
 interface FileInputProps<T extends FieldValues> {
   control: Control<T>;

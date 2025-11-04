@@ -5,7 +5,9 @@ export const zOrganization = z.object({
   name: z.string(),
   color: z.string(),
   logo: z.string(),
-  contactEmail: z.string().nullable(),
+  responsibleName: z.string().nullable(),
+  responsibleEmail: z.string().nullable(),
+  responsiblePhone: z.string().nullable(),
   createdAt: z.string(),
 });
 

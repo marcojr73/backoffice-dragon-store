@@ -7,7 +7,7 @@ async function list(): Promise<TSquad[]> {
 }
 
 async function create(data: TSquad): Promise<TSquad[]> {
-  const response = await apiService.post('/squads');
+  const response = await apiService.post('/squads', data);
   return response.data;
 }
 

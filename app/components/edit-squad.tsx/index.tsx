@@ -24,13 +24,14 @@ const EditSquad = ({
     defaultValues: {
       name: squad?.name ?? '',
       description: squad?.description ?? '',
-      score: squad?.score ?? 0,
+      squadLeader: squad?.squadLeader ?? null,
       color: squad?.color ?? '',
       logo: squad?.logo ?? '',
     },
   });
 
   const onSubmit = async (data: TSquad) => {
+    console.log(data);
     try {
       if (squad !== null) {
         await squadsApi.update(data, squad?.id);
@@ -69,11 +70,11 @@ const EditSquad = ({
             name={'description'}
           />
           <Input
-            label={'Pontuação'}
-            type={'number'}
-            placeholder='Pontuação do time'
+            label={'Lider do time'}
+            placeholder='Clique para selecionar'
+            type={'typeahead'}
             control={control}
-            name={'score'}
+            name={'squadLeader'}
           />
           <Input
             label={'Foto'}

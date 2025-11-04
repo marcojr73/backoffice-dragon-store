@@ -6,22 +6,34 @@ import { organizationApi } from '@/app/api/organization';
 import { zOrganization } from '@/app/schemas/organization.zod';
 import { useUserContext } from '@/app/providers/user-provider';
 import { useEffect } from 'react';
+import NotFound from '@/app/compositions/not-found';
+import { Spinner } from '@/components/ui/shadcn-io/spinner';
 
 const Page = () => {
-  const { user } = useUserContext();
-  const { data, fetch } = useQuery({
+  useUserContext();
+
+  const { data, error, fetch } = useQuery({
     fetchFunction: () => organizationApi.get(),
     schema: zOrganization,
-    onError: error => {
-      console.log(error);
-    },
   });
 
   useEffect(() => {
     (async () => fetch())();
   }, []);
 
-  return data && <Organization organization={data} />;
+  console.log(data);
+
+  if (data) {
+    return <Organization organization={data} />;
+  }
+
+  if (error) {
+    return (
+      <NotFound message='Ocorreu um erro buscar pelas informações da marca' />
+    );
+  }
+
+  return <Spinner />;
 };
 
 export default Page;

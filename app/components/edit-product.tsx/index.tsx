@@ -12,6 +12,8 @@ import {
 } from '@/components/ui/dialog';
 import { Pencil } from 'lucide-react';
 import { productsApi } from '@/app/api/products';
+import { validations } from '@/app/utils/validations';
+import { errorMessages } from '@/app/utils/error-messages';
 
 const EditProduct = ({
   product,
@@ -20,16 +22,30 @@ const EditProduct = ({
   product: TProduct | null;
   close: (shouldReload?: boolean) => void;
 }) => {
-  const { handleSubmit, control } = useForm<TProduct>({
+  const {
+    handleSubmit,
+    control,
+    getValues,
+    formState: { errors },
+  } = useForm<TProduct>({
     defaultValues: {
       name: product?.name ?? '',
       description: product?.description ?? '',
       value: product?.value ?? 0,
       picture: product?.picture ?? '',
+      availableStartAt: parseDate(product?.availableStartAt ?? null),
+      availableEndAt: parseDate(product?.availableEndAt ?? null),
     },
   });
 
+  function parseDate(date: string | null) {
+    if (!date) return null;
+    const d = new Date(date);
+    return d.toISOString().slice(0, 10);
+  }
+
   const onSubmit = async (data: TProduct) => {
+    console.log(data);
     try {
       if (product !== null) {
         await productsApi.update(data, product.id);
@@ -63,7 +79,7 @@ const EditProduct = ({
           <Input
             label={'Descrição'}
             type={'textarea'}
-            placeholder='Descrição do produto'
+            placeholder='Descrição da recompensa'
             control={control}
             name={'description'}
           />
@@ -77,9 +93,40 @@ const EditProduct = ({
           <Input
             label={'Foto'}
             type={'file'}
-            placeholder='Foto do produto'
+            placeholder='Foto da reconpensa'
             control={control}
             name={'picture'}
+          />
+          <Input
+            label={'Disponível a partir de:'}
+            placeholder='Validade'
+            type={'date'}
+            control={control}
+            rules={{
+              validate: arg =>
+                validations.isDateAfterThePresent(arg) ||
+                errorMessages.dateShouldNotInThePast,
+            }}
+            error={errors.availableStartAt?.message}
+            name={'availableStartAt'}
+          />
+          <Input
+            label={'Disponível até:'}
+            placeholder='Validade'
+            type={'date'}
+            control={control}
+            name={'availableEndAt'}
+            rules={{
+              validate: targetDate =>
+                validations.isDateAfterThan(
+                  targetDate,
+                  getValues('availableStartAt')
+                ) ||
+                errorMessages.dateShouldNotAfterThan(
+                  getValues('availableStartAt') as string
+                ),
+            }}
+            error={errors.availableEndAt?.message}
           />
           <DialogFooter>
             <Button type={'submit'}>Salvar</Button>

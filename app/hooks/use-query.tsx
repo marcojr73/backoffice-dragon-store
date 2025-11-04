@@ -54,7 +54,7 @@ export function useQuery<T, K = undefined>({
 
       try {
         const result = await fetchFunction(params);
-
+        console.log(result);
         const validationResult = schema.safeParse(result);
 
         if (!validationResult.success) {
@@ -64,6 +64,7 @@ export function useQuery<T, K = undefined>({
         dispatch({ type: 'FETCH_SUCCESS', payload: validationResult.data });
         onSuccess && onSuccess(validationResult.data);
       } catch (error: unknown) {
+        console.log(error);
         dispatch({ type: 'FETCH_ERROR', payload: error });
         onError && onError(error);
       }

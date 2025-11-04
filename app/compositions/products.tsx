@@ -74,20 +74,20 @@ const Products = ({
 
   return (
     <PageBox
-      title={'Produtos'}
+      title={'Recompensas'}
       header={
         <Button
           variant={'default'}
           className='cursor-pointer'
           onClick={() => openEditDialog()}
         >
-          Novo produto
+          Nova recompensa
         </Button>
       }
     >
       <Table>
         <TableCaption>
-          Lista de produtos cadastrados: {products.length}
+          Lista de recompensas cadastrados: {products.length}
         </TableCaption>
         <TableHeader>
           <TableRow>

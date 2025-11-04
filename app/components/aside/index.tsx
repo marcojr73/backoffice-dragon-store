@@ -31,8 +31,8 @@ function Aside() {
       icon: Tag,
     },
     {
-      title: 'Produtos',
-      url: '/backoffice/produtos',
+      title: 'Recompensas',
+      url: '/backoffice/recompensas',
       icon: Inbox,
     },
     {
