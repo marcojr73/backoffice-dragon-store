@@ -11,14 +11,21 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Pencil, Trash } from 'lucide-react';
+import { Pencil, Trash, Users } from 'lucide-react';
 import EditSquad from '@/app/components/edit-squad.tsx';
 import { AlertConfirmDialog } from '@/app/components/alert-confirm-dialog.tsx';
 import { squadsApi } from '@/app/api/squads';
 import Image from 'next/image';
+import EditUsersSquad from '@/app/components/edit-users-squad.tsx';
 
 const Squads = ({ squads, fetch }: { squads: TSquad[]; fetch: () => void }) => {
-  console.log(squads);
+  const [usersSquadToEdit, setUsersSquadToEdit] = useState<{
+    isOpen: boolean;
+    squad: TSquad | null;
+  }>({
+    isOpen: false,
+    squad: null,
+  });
 
   const [squadToEdit, setSquadToEdit] = useState<{
     isOpen: boolean;
@@ -36,6 +43,13 @@ const Squads = ({ squads, fetch }: { squads: TSquad[]; fetch: () => void }) => {
     squad: null,
   });
 
+  function openSquadUsersDialog(squad: TSquad) {
+    setUsersSquadToEdit({
+      isOpen: true,
+      squad,
+    });
+  }
+
   function openEditDialog(squad: TSquad | null = null) {
     setSquadToEdit({
       isOpen: true,
@@ -50,23 +64,20 @@ const Squads = ({ squads, fetch }: { squads: TSquad[]; fetch: () => void }) => {
     });
   }
 
-  function closeEditDialog(shouldReload: boolean = false) {
+  function closeDialogs(shouldReload: boolean = false) {
     setSquadToEdit({ isOpen: false, squad: null });
+    setSquadToDelete({ isOpen: false, squad: null });
+    setUsersSquadToEdit({ isOpen: false, squad: null });
     if (shouldReload) fetch();
   }
 
   async function deleteProduct() {
     try {
       await squadsApi.deleteSquad(squadToDelete.squad!.id);
-      closeDeleteDialog(true);
+      closeDialogs(true);
     } catch (error) {
       console.warn(error);
     }
-  }
-
-  function closeDeleteDialog(shouldReload: boolean = false) {
-    setSquadToDelete({ isOpen: false, squad: null });
-    if (shouldReload) fetch();
   }
 
   return (
@@ -114,6 +125,14 @@ const Squads = ({ squads, fetch }: { squads: TSquad[]; fetch: () => void }) => {
                   variant='ghost'
                   className={'cursor-pointer'}
                   size='icon'
+                  onClick={() => openSquadUsersDialog(squad)}
+                >
+                  <Users className='h-4 w-4' />
+                </Button>
+                <Button
+                  variant='ghost'
+                  className={'cursor-pointer'}
+                  size='icon'
                   onClick={() => openEditDialog(squad)}
                 >
                   <Pencil className='h-4 w-4' />
@@ -132,7 +151,13 @@ const Squads = ({ squads, fetch }: { squads: TSquad[]; fetch: () => void }) => {
         </TableBody>
       </Table>
       {squadToEdit.isOpen && (
-        <EditSquad squad={squadToEdit.squad} close={closeEditDialog} />
+        <EditSquad squad={squadToEdit.squad} close={closeDialogs} />
+      )}
+      {usersSquadToEdit.isOpen && (
+        <EditUsersSquad
+          squadId={usersSquadToEdit.squad!.id}
+          close={closeDialogs}
+        />
       )}
       <AlertConfirmDialog
         isOpen={squadToDelete.isOpen}
@@ -142,7 +167,7 @@ const Squads = ({ squads, fetch }: { squads: TSquad[]; fetch: () => void }) => {
           'time e removerá seus dados de nossos servidores.'
         }
         onConfirm={deleteProduct}
-        close={closeDeleteDialog}
+        close={closeDialogs}
       />
     </PageBox>
   );

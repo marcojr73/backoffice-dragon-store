@@ -8,29 +8,7 @@ import SwitchInput from '@/components/ui/form-inputs/switch-input';
 import TextInput from '@/components/ui/form-inputs/text-input';
 import ColorInput from '@/components/ui/form-inputs/color-input';
 import TypeaheadInput from '@/components/ui/form-inputs/typeahead-input';
-
-const frameworks = [
-  {
-    value: 'next.js',
-    label: 'Next.js',
-  },
-  {
-    value: 'sveltekit',
-    label: 'SvelteKit',
-  },
-  {
-    value: 'nuxt.js',
-    label: 'Nuxt.js',
-  },
-  {
-    value: 'remix',
-    label: 'Remix',
-  },
-  {
-    value: 'astro',
-    label: 'Astro',
-  },
-];
+import SearchInput from '@/components/ui/form-inputs/search-input';
 
 function Input<T extends FieldValues>({
   className,
@@ -41,6 +19,8 @@ function Input<T extends FieldValues>({
   error,
   rules,
   maskFormatter,
+  remote,
+  action,
   ...props
 }: React.ComponentProps<'input'> & {
   label: string;
@@ -51,7 +31,15 @@ function Input<T extends FieldValues>({
     RegisterOptions<T, (string | undefined) & Path<T>>,
     'disabled' | 'valueAsNumber' | 'valueAsDate' | 'setValueAs'
   >;
+  action?: {
+    onSubmitButton: () => void;
+  };
   maskFormatter?: (value: string) => string;
+  remote?: {
+    fetchFunction: () =>
+      | Promise<{ value: number; label: string }[]>
+      | { value: number; label: string }[];
+  };
 }) {
   console.log(error);
   let field: ReactNode;
@@ -69,12 +57,23 @@ function Input<T extends FieldValues>({
     case 'color':
       field = <ColorInput control={control} name={name} />;
       break;
+    case 'search':
+      field = (
+        <SearchInput
+          control={control}
+          name={name}
+          rules={rules}
+          placeholder={'Digite e busque...'}
+        />
+      );
+      break;
     case 'typeahead':
       field = (
         <TypeaheadInput
           control={control}
           name={name}
-          options={frameworks}
+          action={action}
+          remote={remote}
           placeholder={props.placeholder}
         />
       );
@@ -92,7 +91,7 @@ function Input<T extends FieldValues>({
   }
 
   return (
-    <div className=''>
+    <div>
       <Label htmlFor={props.id} className={'mb-2'}>
         {label}
       </Label>

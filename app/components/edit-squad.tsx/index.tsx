@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Input } from '@/components/ui/form-inputs/input';
 import { Button } from '@/components/ui/button';
@@ -12,6 +12,11 @@ import {
 import { Pencil } from 'lucide-react';
 import { squadsApi } from '@/app/api/squads';
 import { TSquad } from '@/app/schemas/squads.zod';
+import { useQuery } from '@/app/hooks/use-query';
+import { usersApi } from '@/app/api/users';
+import { zUsers } from '@/app/schemas/user.zod';
+import { Spinner } from '@/components/ui/shadcn-io/spinner';
+import NotFound from '@/app/compositions/not-found';
 
 const EditSquad = ({
   squad,
@@ -24,14 +29,41 @@ const EditSquad = ({
     defaultValues: {
       name: squad?.name ?? '',
       description: squad?.description ?? '',
-      squadLeader: squad?.squadLeader ?? null,
+      squadLeaderId: squad?.squadLeaderId ?? null,
       color: squad?.color ?? '',
       logo: squad?.logo ?? '',
     },
   });
 
+  const {
+    data: users,
+    fetch,
+    isLoading,
+    error,
+  } = useQuery({
+    fetchFunction: usersApi.list,
+    schema: zUsers,
+    onError: error => {
+      console.log(error);
+    },
+  });
+
+  useEffect(() => {
+    (async () => fetch())();
+  }, []);
+
+  async function getUsers() {
+    if (!squad) {
+      return [];
+    }
+    const response = await squadsApi.listUsersSquad(squad?.id);
+    return response.usersSquad.map(user => ({
+      value: user.id,
+      label: user.userName,
+    }));
+  }
+
   const onSubmit = async (data: TSquad) => {
-    console.log(data);
     try {
       if (squad !== null) {
         await squadsApi.update(data, squad?.id);
@@ -56,40 +88,51 @@ const EditSquad = ({
               </div>
             </DialogTitle>
           </DialogHeader>
-          <Input
-            label={'Nome'}
-            placeholder='Nome do time'
-            control={control}
-            name={'name'}
-          />
-          <Input
-            label={'Descrição'}
-            type={'textarea'}
-            placeholder='Descrição do time'
-            control={control}
-            name={'description'}
-          />
-          <Input
-            label={'Lider do time'}
-            placeholder='Clique para selecionar'
-            type={'typeahead'}
-            control={control}
-            name={'squadLeader'}
-          />
-          <Input
-            label={'Foto'}
-            type={'file'}
-            placeholder='Foto do time'
-            control={control}
-            name={'logo'}
-          />
-          <Input
-            label={'Cor'}
-            type={'color'}
-            placeholder='Cor principal que representa o time'
-            control={control}
-            name={'color'}
-          />
+
+          {users && Boolean(users.length > 0) && (
+            <>
+              <Input
+                label={'Nome'}
+                placeholder='Nome do time'
+                control={control}
+                name={'name'}
+              />
+              <Input
+                label={'Lider do time'}
+                placeholder='Clique para selecionar'
+                type={'typeahead'}
+                remote={{ fetchFunction: getUsers }}
+                control={control}
+                name={'squadLeaderId'}
+              />
+              <Input
+                label={'Descrição'}
+                type={'textarea'}
+                placeholder='Descrição do time'
+                control={control}
+                name={'description'}
+              />
+              <Input
+                label={'Foto'}
+                type={'file'}
+                placeholder='Foto do time'
+                control={control}
+                name={'logo'}
+              />
+              <Input
+                label={'Cor'}
+                type={'color'}
+                placeholder='Cor principal que representa o time'
+                control={control}
+                name={'color'}
+              />
+            </>
+          )}
+
+          {isLoading && <Spinner />}
+
+          {Boolean(error) && <NotFound message={'Ocorreu um erro'}></NotFound>}
+
           <DialogFooter>
             <Button type={'submit'}>Salvar</Button>
           </DialogFooter>

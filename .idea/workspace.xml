@@ -7,45 +7,12 @@
     <list default="true" id="f25ec39c-1671-44be-acdd-ce390bb2eb7b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/api/squads.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/squads.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/backoffice/marca/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/backoffice/marca/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/backoffice/produtos/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/backoffice/recompensas/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/aside/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/aside/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/edit-product.tsx/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/edit-product.tsx/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/components/edit-squad.tsx/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/edit-squad.tsx/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/compositions/organization.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/compositions/organization.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/compositions/products.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/compositions/products.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/compositions/squads.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/compositions/squads.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/hooks/use-query.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/hooks/use-query.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schemas/organization.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/organization.zod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schemas/products.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/products.zod.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/schemas/squads.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/squads.zod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/alert-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/alert-dialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/breadcrumb.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/breadcrumb.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/card.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/dialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/dropdown-menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/dropdown-menu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/form-inputs/file-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/file-input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/command.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/command.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ui/form-inputs/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/form-inputs/switch-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/switch-input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/form-inputs/text-area-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/text-area-input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/form-inputs/text-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/text-input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/label.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/label.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/separator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/separator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/shadcn-io/spinner/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/shadcn-io/spinner/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/sheet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/sheet.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/skeleton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/skeleton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/switch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/switch.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/table.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/textarea.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/textarea.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/tooltip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/tooltip.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/use-mobile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/hooks/use-mobile.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/format.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/format.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/utils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/form-inputs/typeahead-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/typeahead-input.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +146,14 @@
       <workItem from="1762213713560" duration="1225000" />
       <workItem from="1762257399867" duration="7000" />
       <workItem from="1762259199782" duration="702000" />
-      <workItem from="1762275585558" duration="5550000" />
+      <workItem from="1762275585558" duration="5651000" />
+      <workItem from="1762285747070" duration="5813000" />
+      <workItem from="1762297752024" duration="4417000" />
+      <workItem from="1762343608107" duration="8000" />
+      <workItem from="1762363529665" duration="4581000" />
+      <workItem from="1762370571387" duration="2142000" />
+      <workItem from="1762463973141" duration="3675000" />
+      <workItem from="1762716544838" duration="8631000" />
     </task>
     <servers />
   </component>
