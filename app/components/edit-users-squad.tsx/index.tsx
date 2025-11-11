@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Pencil, Trash } from 'lucide-react';
+import { Pencil, Star, Trash } from 'lucide-react';
 import { squadsApi } from '@/app/api/squads';
 import { useQuery } from '@/app/hooks/use-query';
 import { Spinner } from '@/components/ui/shadcn-io/spinner';
@@ -98,6 +98,18 @@ const EditUsersSquad = ({
     }
   };
 
+  const promoteToAdmin = async (data: number) => {
+    try {
+      const loadingId = toast.loading('Promovendo a Líder do time');
+      await squadsApi.patch({ squadLeaderId: data }, squadId);
+      toast.success('Líder atualizado!', { id: loadingId });
+      await fetch();
+    } catch (error) {
+      toast.error('Erro ao promover.');
+      console.error('Erro ao salvar:', error);
+    }
+  };
+
   return (
     <Dialog open={true} onOpenChange={() => close()}>
       <DialogContent aria-describedby={'products'}>
@@ -150,7 +162,9 @@ const EditUsersSquad = ({
                             className={'rounded-full w-6 h-6'}
                           />
                         )}
+
                         <span>{userSquad.userName}</span>
+
                         {userSquad.id === squad.squadLeaderId && (
                           <span className='bg-accent px-2 py-0 rounded-sm text-xs'>
                             Líder
@@ -163,6 +177,16 @@ const EditUsersSquad = ({
                         variant='ghost'
                         className={'cursor-pointer'}
                         size='icon'
+                        onClick={() => promoteToAdmin(userSquad.id)}
+                        title={'Promover a líder do time'}
+                      >
+                        <Star className='h-4 w-4' />
+                      </Button>
+                      <Button
+                        variant='ghost'
+                        className={'cursor-pointer'}
+                        size='icon'
+                        title={'Remover colaborador do time'}
                         onClick={() => deleteUser(userSquad.id)}
                       >
                         <Trash className='h-4 w-4' />
@@ -174,7 +198,9 @@ const EditUsersSquad = ({
             </Table>
           </>
         )}
+
         {isLoading && <Spinner />}
+
         {Boolean(error) && <NotFound message={'Ocorreu um erro'}></NotFound>}
 
         <DialogFooter>

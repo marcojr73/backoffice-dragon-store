@@ -17,6 +17,7 @@ import { AlertConfirmDialog } from '@/app/components/alert-confirm-dialog.tsx';
 import { squadsApi } from '@/app/api/squads';
 import Image from 'next/image';
 import EditUsersSquad from '@/app/components/edit-users-squad.tsx';
+import { toast } from 'sonner';
 
 const Squads = ({ squads, fetch }: { squads: TSquad[]; fetch: () => void }) => {
   const [usersSquadToEdit, setUsersSquadToEdit] = useState<{
@@ -71,12 +72,15 @@ const Squads = ({ squads, fetch }: { squads: TSquad[]; fetch: () => void }) => {
     if (shouldReload) fetch();
   }
 
-  async function deleteProduct() {
+  async function deleteSquad() {
+    const loadingId = toast.loading('Deletando o time');
     try {
       await squadsApi.deleteSquad(squadToDelete.squad!.id);
       closeDialogs(true);
+      toast.success('Time deletado!', { id: loadingId });
     } catch (error) {
       console.warn(error);
+      toast.error('Ocorreu um erro ao deletar o time!', { id: loadingId });
     }
   }
 
@@ -151,7 +155,7 @@ const Squads = ({ squads, fetch }: { squads: TSquad[]; fetch: () => void }) => {
         </TableBody>
       </Table>
       {squadToEdit.isOpen && (
-        <EditSquad squad={squadToEdit.squad} close={closeDialogs} />
+        <EditSquad squad={squadToEdit.squad} close={() => closeDialogs(true)} />
       )}
       {usersSquadToEdit.isOpen && (
         <EditUsersSquad
@@ -166,7 +170,7 @@ const Squads = ({ squads, fetch }: { squads: TSquad[]; fetch: () => void }) => {
           'Esta ação não pode ser desfeita. Isso excluirá permanentemente o' +
           'time e removerá seus dados de nossos servidores.'
         }
-        onConfirm={deleteProduct}
+        onConfirm={deleteSquad}
         close={closeDialogs}
       />
     </PageBox>

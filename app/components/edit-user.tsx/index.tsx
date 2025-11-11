@@ -13,6 +13,7 @@ import { Pencil } from 'lucide-react';
 import { TUser } from '@/app/schemas/user.zod';
 import { userApi } from '@/app/api/user';
 import { toast } from 'sonner';
+import { squadsApi } from '@/app/api/squads';
 
 const EditUser = ({
   user,
@@ -21,7 +22,7 @@ const EditUser = ({
   user: TUser | null;
   close: (shouldReload?: boolean) => void;
 }) => {
-  const { control, handleSubmit } = useForm<TUser>({
+  const { control, handleSubmit } = useForm<TUser & { squadId: number }>({
     defaultValues: {
       userName: user?.userName ?? '',
       email: user?.email ?? '',
@@ -34,18 +35,27 @@ const EditUser = ({
   });
 
   const onSubmit = async (data: TUser) => {
+    const loadingId = toast.loading('Criando o usuário');
     try {
       if (user !== null) {
         await userApi.update(user.id, data);
       } else {
         await userApi.create(data);
       }
-      close(true);
-      toast.success('Sucesso');
+      toast.success('Sucesso', { id: loadingId });
     } catch (error) {
+      toast.error('Ocorreu um erro', { id: loadingId });
       console.error('Erro ao salvar:', error);
     }
   };
+
+  async function getSquads() {
+    const response = await squadsApi.list();
+    return response.map(squad => ({
+      value: squad.id,
+      label: squad.name,
+    }));
+  }
 
   return (
     <Dialog open onOpenChange={() => close()}>
@@ -78,18 +88,6 @@ const EditUser = ({
             control={control}
             name={'password'}
             type={'password'}
-          />
-          <Input
-            type={'number'}
-            label={'Moedas para enviar'}
-            control={control}
-            name={'coins'}
-          />
-          <Input
-            type={'number'}
-            label={'Moedas para consumir'}
-            control={control}
-            name={'gas'}
           />
           <DialogFooter>
             <Button type={'submit'}>Salvar</Button>

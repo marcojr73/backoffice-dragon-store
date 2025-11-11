@@ -10,12 +10,13 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { Pencil, Trash } from 'lucide-react';
+import { Pencil, ShieldHalf, Trash } from 'lucide-react';
 import { TUser } from '@/app/schemas/user.zod';
 import EditUser from '@/app/components/edit-user.tsx';
 import { userApi } from '@/app/api/user';
 import { AlertConfirmDialog } from '@/app/components/alert-confirm-dialog.tsx';
 import Image from 'next/image';
+import EditUserSquads from '../components/edit-user-squads.tsx';
 
 const Users = ({ users, fetch }: { users: TUser[]; fetch: () => void }) => {
   const [userToEdit, setUserToEdit] = useState<{
@@ -27,6 +28,14 @@ const Users = ({ users, fetch }: { users: TUser[]; fetch: () => void }) => {
   });
 
   const [userToDelete, setUserToDelete] = useState<{
+    isOpen: boolean;
+    user: TUser | null;
+  }>({
+    isOpen: false,
+    user: null,
+  });
+
+  const [squadUserToEdit, setSquadUserToEdit] = useState<{
     isOpen: boolean;
     user: TUser | null;
   }>({
@@ -48,20 +57,24 @@ const Users = ({ users, fetch }: { users: TUser[]; fetch: () => void }) => {
     });
   }
 
-  function closeDeleteDialog(shouldReload: boolean = false) {
-    setUserToDelete({ isOpen: false, user: null });
-    if (shouldReload) fetch();
+  function openEditSquadUserDialog(user: TUser | null = null) {
+    setSquadUserToEdit({
+      isOpen: true,
+      user: user,
+    });
   }
 
-  function closeEditDialog(shouldReload: boolean = false) {
+  function closeDialog(shouldReload = false) {
+    setUserToDelete({ isOpen: false, user: null });
     setUserToEdit({ isOpen: false, user: null });
+    setSquadUserToEdit({ isOpen: false, user: null });
     if (shouldReload) fetch();
   }
 
   async function deleteUser() {
     try {
       await userApi.deleteUser(userToDelete.user!.id);
-      closeDeleteDialog(true);
+      closeDialog(true);
     } catch (error) {
       console.warn(error);
     }
@@ -113,7 +126,17 @@ const Users = ({ users, fetch }: { users: TUser[]; fetch: () => void }) => {
                   variant='ghost'
                   className={'cursor-pointer'}
                   size='icon'
+                  onClick={() => openEditSquadUserDialog(user)}
+                  title={'Times'}
+                >
+                  <ShieldHalf className='h-4 w-4' />
+                </Button>
+                <Button
+                  variant='ghost'
+                  className={'cursor-pointer'}
+                  size='icon'
                   onClick={() => openEditDialog(user)}
+                  title={'Editar'}
                 >
                   <Pencil className='h-4 w-4' />
                 </Button>
@@ -122,6 +145,7 @@ const Users = ({ users, fetch }: { users: TUser[]; fetch: () => void }) => {
                   className={'cursor-pointer'}
                   size='icon'
                   onClick={() => openDeleteDialog(user)}
+                  title={'Deletar'}
                 >
                   <Trash className='h-4 w-4' />
                 </Button>
@@ -131,8 +155,13 @@ const Users = ({ users, fetch }: { users: TUser[]; fetch: () => void }) => {
         </TableBody>
       </Table>
       {userToEdit.isOpen && (
-        <EditUser user={userToEdit.user} close={closeEditDialog} />
+        <EditUser user={userToEdit.user} close={closeDialog} />
       )}
+
+      {squadUserToEdit.isOpen && (
+        <EditUserSquads userId={squadUserToEdit.user!.id} close={closeDialog} />
+      )}
+
       <AlertConfirmDialog
         isOpen={userToDelete.isOpen}
         title={'Tem certeza que deseja deletar o usuário?'}
@@ -141,7 +170,7 @@ const Users = ({ users, fetch }: { users: TUser[]; fetch: () => void }) => {
           'conta e removerá seus dados de nossos servidores.'
         }
         onConfirm={deleteUser}
-        close={closeDeleteDialog}
+        close={closeDialog}
       />
     </PageBox>
   );

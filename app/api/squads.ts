@@ -1,5 +1,5 @@
 import apiService from '@/app/api/index';
-import { TSquad, TUsersSquad } from '@/app/schemas/squads.zod';
+import { TSquad, TUserSquads, TUsersSquad } from '@/app/schemas/squads.zod';
 
 async function list(): Promise<TSquad[]> {
   const response = await apiService.get('/squads');
@@ -11,18 +11,23 @@ async function create(data: TSquad): Promise<TSquad[]> {
   return response.data;
 }
 
-async function update(data: TSquad, id: number): Promise<TSquad[]> {
-  const response = await apiService.put(`/squads/${id}`, data);
+async function patch(data: Partial<TSquad>, id: number): Promise<TSquad[]> {
+  const response = await apiService.patch(`/squads/${id}`, data);
   return response.data;
 }
 
 async function deleteSquad(id: number): Promise<TSquad[]> {
-  const response = await apiService.delete('/squads');
+  const response = await apiService.delete(`/squads/${id}`);
   return response.data;
 }
 
 async function listUsersSquad(squadId: number): Promise<TUsersSquad> {
   const response = await apiService.get(`/squads/${squadId}/users`);
+  return response.data;
+}
+
+async function listUserSquads(userId: number): Promise<TUserSquads> {
+  const response = await apiService.get(`/squads/users/${userId}`);
   return response.data;
 }
 
@@ -46,10 +51,11 @@ async function deleteUserSquad(
 
 export const squadsApi = {
   list,
-  update,
+  patch,
   create,
   deleteSquad,
   listUsersSquad,
+  listUserSquads,
   addUserSquad,
   deleteUserSquad,
 };
