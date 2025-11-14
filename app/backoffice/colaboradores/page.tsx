@@ -21,7 +21,7 @@ const Employees = () => {
     return <Users users={data} fetch={fetch} />;
   }
 
-  if (isLoading) {
+  if (isLoading && !data) {
     return <Spinner variant={'circle'} />;
   }
 };

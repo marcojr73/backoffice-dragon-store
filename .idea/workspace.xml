@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f25ec39c-1671-44be-acdd-ce390bb2eb7b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/squads.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/squads.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/edit-squad.tsx/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/edit-squad.tsx/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/compositions/squads.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/compositions/squads.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/backoffice/colaboradores/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/backoffice/colaboradores/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/edit-user-squads.tsx/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/edit-user-squads.tsx/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/edit-user.tsx/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/edit-user.tsx/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/compositions/users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/compositions/users.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/schemas/squads.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/squads.zod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/command.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/command.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/error-messages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/error-messages.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/button.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ui/form-inputs/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/form-inputs/typeahead-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/typeahead-input.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +47,7 @@
     &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
     &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/marco/uex/dragon-store/backoffice/components/ui/form-inputs&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/marco/uex/dragon-store/backoffice/app/components&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -60,8 +62,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\marco\uex\dragon-store\backoffice\components\ui\form-inputs" />
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\components" />
+      <recent name="C:\Users\marco\uex\dragon-store\backoffice\components\ui\form-inputs" />
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\schemas" />
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\api" />
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\compositions" />
@@ -153,7 +155,16 @@
       <workItem from="1762363529665" duration="4581000" />
       <workItem from="1762370571387" duration="2142000" />
       <workItem from="1762463973141" duration="3675000" />
-      <workItem from="1762716544838" duration="8631000" />
+      <workItem from="1762716544838" duration="8908000" />
+      <workItem from="1762799770263" duration="743000" />
+      <workItem from="1762807129278" duration="9845000" />
+      <workItem from="1762880673145" duration="376000" />
+      <workItem from="1762897171743" duration="4032000" />
+      <workItem from="1762904343309" duration="1832000" />
+      <workItem from="1763045002934" duration="1722000" />
+      <workItem from="1763070709081" duration="7152000" />
+      <workItem from="1763080275403" duration="1287000" />
+      <workItem from="1763152838661" duration="86000" />
     </task>
     <servers />
   </component>

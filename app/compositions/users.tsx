@@ -17,6 +17,7 @@ import { userApi } from '@/app/api/user';
 import { AlertConfirmDialog } from '@/app/components/alert-confirm-dialog.tsx';
 import Image from 'next/image';
 import EditUserSquads from '../components/edit-user-squads.tsx';
+import { toast } from 'sonner';
 
 const Users = ({ users, fetch }: { users: TUser[]; fetch: () => void }) => {
   const [userToEdit, setUserToEdit] = useState<{
@@ -72,11 +73,14 @@ const Users = ({ users, fetch }: { users: TUser[]; fetch: () => void }) => {
   }
 
   async function deleteUser() {
+    const loadingId = toast.loading('Deletando usuário.');
     try {
       await userApi.deleteUser(userToDelete.user!.id);
       closeDialog(true);
+      toast.success('Deletado!', { id: loadingId });
     } catch (error) {
       console.warn(error);
+      toast.error('Não foi possível deletar!', { id: loadingId });
     }
   }
 
@@ -154,8 +158,13 @@ const Users = ({ users, fetch }: { users: TUser[]; fetch: () => void }) => {
           ))}
         </TableBody>
       </Table>
+
       {userToEdit.isOpen && (
-        <EditUser user={userToEdit.user} close={closeDialog} />
+        <EditUser
+          userToEdit={userToEdit.user}
+          close={closeDialog}
+          onSuccess={fetch}
+        />
       )}
 
       {squadUserToEdit.isOpen && (

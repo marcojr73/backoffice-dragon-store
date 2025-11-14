@@ -34,6 +34,7 @@ export const zUserSquads = z.array(
     squad: z.object({
       id: z.number(),
       name: z.string(),
+      logo: z.string().nullable(),
       squadLeaderId: z.number().nullable(),
     }),
   })

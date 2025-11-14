@@ -41,7 +41,6 @@ function Input<T extends FieldValues>({
       | { value: number; label: string }[];
   };
 }) {
-  console.log(error);
   let field: ReactNode;
 
   switch (type) {
