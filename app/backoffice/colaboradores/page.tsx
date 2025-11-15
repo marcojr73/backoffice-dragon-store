@@ -8,22 +8,22 @@ import Users from '@/app/compositions/users';
 import { Spinner } from '@/components/ui/shadcn-io/spinner';
 
 const Employees = () => {
-  const { data, fetch, isLoading } = useQuery({
-    fetchFunction: usersApi.list,
-    schema: zUsers,
-  });
-
-  useEffect(() => {
-    (async () => fetch())();
-  }, []);
-
-  if (data) {
-    return <Users users={data} fetch={fetch} />;
-  }
-
-  if (isLoading && !data) {
-    return <Spinner variant={'circle'} />;
-  }
+  // const { data, fetch, isLoading } = useQuery({
+  //   fetchFunction: usersApi.list,
+  //   schema: zUsers,
+  // });
+  //
+  // useEffect(() => {
+  //   (async () => fetch())();
+  // }, []);
+  //
+  // if (data) {
+  return <Users />;
+  // }
+  //
+  // if (isLoading && !data) {
+  //   return <Spinner variant={'circle'} />;
+  // }
 };
 
 export default Employees;

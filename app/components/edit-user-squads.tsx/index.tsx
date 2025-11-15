@@ -13,18 +13,8 @@ import { Pencil, ShieldEllipsis, UserMinus } from 'lucide-react';
 import { squadsApi } from '@/app/api/squads';
 import { zUserSquads } from '@/app/schemas/squads.zod';
 import { useQuery } from '@/app/hooks/use-query';
-import { Spinner } from '@/components/ui/shadcn-io/spinner';
-import NotFound from '@/app/compositions/not-found';
 import { toast } from 'sonner';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
-import Image from 'next/image';
+import DragonTable from '@/components/ui/table/dragon-table';
 
 const EditUserSquads = ({
   userId,
@@ -118,87 +108,55 @@ const EditUserSquads = ({
         </DialogHeader>
 
         <form className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)}>
-          {userSquads && Boolean(userSquads.length > 0) && (
-            <>
-              <Input
-                label={'Nome'}
-                placeholder='Nome do time'
-                type={'typeahead'}
-                control={control}
-                action={{ onSubmitButton: () => handleSubmit(onSubmit) }}
-                remote={{ fetchFunction: getSquads }}
-                name={'squadId'}
-              />
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className='font-bold'>Nome</TableHead>
-                    <TableHead className='w-[50px] font-bold'>Ações</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody className={'cursor-default'}>
-                  {userSquads.map((userSquad, index) => (
-                    <TableRow key={index}>
-                      <TableCell>
-                        <div className='flex items-center gap-2'>
-                          {userSquad.squad && (
-                            <Image
-                              src={userSquad.squad.logo ?? ''}
-                              alt={'Foto de perfil'}
-                              width={100}
-                              height={100}
-                              className={'rounded-full w-6 h-6'}
-                            />
-                          )}
-
-                          <span>{userSquad.squad.name}</span>
-
-                          {userSquad.squad.squadLeaderId === userId && (
-                            <span className='bg-accent px-2 py-0 rounded-sm text-xs'>
-                              Líder
-                            </span>
-                          )}
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <Button
-                          variant={'ghost'}
-                          className={'cursor-pointer'}
-                          size='icon'
-                          type={'button'}
-                          onClick={() =>
-                            promoteToAdmin(
-                              userSquad.squad.id,
-                              userSquad.squad.squadLeaderId === userId
-                                ? null
-                                : userId
-                            )
-                          }
-                          title={'Promover a líder do time'}
-                        >
-                          <ShieldEllipsis className='h-4 w-4' />
-                        </Button>
-                        <Button
-                          variant='ghost'
-                          className={'cursor-pointer'}
-                          size='icon'
-                          title={'Remover colaborador do time'}
-                          onClick={() => deleteUser(userSquad.squad.id)}
-                        >
-                          <UserMinus className='h-4 w-4' />
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </>
-          )}
+          <>
+            <Input
+              label={'Nome'}
+              placeholder='Nome do time'
+              type={'typeahead'}
+              control={control}
+              action={{ onSubmitButton: () => handleSubmit(onSubmit) }}
+              remote={{ fetchFunction: getSquads }}
+              name={'squadId'}
+            />
+            <DragonTable
+              data={userSquads}
+              columns={[
+                {
+                  header: {
+                    label: 'Nome',
+                  },
+                  format: arg => arg.squad.name,
+                },
+                {
+                  header: {
+                    label: 'Ações',
+                  },
+                  width: '50px',
+                  buttons: [
+                    {
+                      icon: <ShieldEllipsis className='h-4 w-4' />,
+                      title: 'Promover a líder do time',
+                      action: userSquad =>
+                        promoteToAdmin(
+                          userSquad.squad.id,
+                          userSquad.squad.squadLeaderId === userId
+                            ? null
+                            : userId
+                        ),
+                    },
+                    {
+                      icon: <UserMinus className='h-4 w-4' />,
+                      title: 'Remover colaborador do time',
+                      action: userSquad => deleteUser(userSquad.squad.id),
+                    },
+                  ],
+                },
+              ]}
+              isLoading={isLoading}
+              emptyMessage={'O usuário ainda não participa de nenhum time'}
+            />
+          </>
         </form>
-
-        {isLoading && <Spinner />}
-
-        {Boolean(error) && <NotFound message={'Ocorreu um erro'}></NotFound>}
 
         <DialogFooter>
           <Button type={'submit'}>Salvar</Button>

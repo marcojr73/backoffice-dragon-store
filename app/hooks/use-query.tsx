@@ -38,12 +38,12 @@ export function useQuery<T, K = undefined>({
   onSuccess?: (arg: T) => Promise<void> | void;
   onError?: (error: unknown) => void;
 }) {
-  const b = 3;
   const [state, dispatch] = useReducer(queryReducer<T>, {
     data: null,
     isLoading: false,
     error: null,
   });
+
   const previousParamsRef = useRef<K>(undefined);
 
   async function fetch() {

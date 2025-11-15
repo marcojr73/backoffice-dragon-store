@@ -5,16 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f25ec39c-1671-44be-acdd-ce390bb2eb7b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/backoffice/colaboradores/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/backoffice/colaboradores/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/components/edit-user-squads.tsx/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/edit-user-squads.tsx/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/edit-user.tsx/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/edit-user.tsx/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/compositions/not-found.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/compositions/not-found.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/compositions/users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/compositions/users.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schemas/squads.zod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/squads.zod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/error-messages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/error-messages.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/form-inputs/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/hooks/use-query.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/hooks/use-query.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/shadcn-io/spinner/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/shadcn-io/spinner/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,11 +66,11 @@
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\compositions" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\marco\uex\dragon-store\backoffice\public\empty-states" />
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\utils" />
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\hooks" />
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\components\ui\form-inputs" />
       <recent name="C:\Users\marco\uex\dragon-store\backoffice\app\compositions" />
-      <recent name="C:\Users\marco\uex\dragon-store\backoffice\app" />
     </key>
   </component>
   <component name="RunManager" selected="npm.Next.js: server-side">
@@ -164,7 +161,8 @@
       <workItem from="1763045002934" duration="1722000" />
       <workItem from="1763070709081" duration="7152000" />
       <workItem from="1763080275403" duration="1287000" />
-      <workItem from="1763152838661" duration="86000" />
+      <workItem from="1763152838661" duration="5287000" />
+      <workItem from="1763160783147" duration="5850000" />
     </task>
     <servers />
   </component>

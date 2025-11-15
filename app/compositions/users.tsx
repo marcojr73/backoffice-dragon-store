@@ -1,25 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PageBox from '@/app/components/page-box';
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { Pencil, ShieldHalf, Trash } from 'lucide-react';
-import { TUser } from '@/app/schemas/user.zod';
+import { TUser, zUsers } from '@/app/schemas/user.zod';
 import EditUser from '@/app/components/edit-user.tsx';
 import { userApi } from '@/app/api/user';
 import { AlertConfirmDialog } from '@/app/components/alert-confirm-dialog.tsx';
-import Image from 'next/image';
 import EditUserSquads from '../components/edit-user-squads.tsx';
 import { toast } from 'sonner';
+import DragonTable from '@/components/ui/table/dragon-table';
+import { useTableData } from '@/app/hooks/use-table-data';
+import { usersApi } from '@/app/api/users';
+import emptyProfilePic from '@assets/empty-states/empty_profile.png';
+import Image from 'next/image';
+import { Pencil, ShieldHalf, Trash } from 'lucide-react';
 
-const Users = ({ users, fetch }: { users: TUser[]; fetch: () => void }) => {
+const Users = () => {
   const [userToEdit, setUserToEdit] = useState<{
     isOpen: boolean;
     user: TUser | null;
@@ -65,24 +60,37 @@ const Users = ({ users, fetch }: { users: TUser[]; fetch: () => void }) => {
     });
   }
 
-  function closeDialog(shouldReload = false) {
+  async function closeDialog(shouldReload = false) {
     setUserToDelete({ isOpen: false, user: null });
     setUserToEdit({ isOpen: false, user: null });
     setSquadUserToEdit({ isOpen: false, user: null });
-    if (shouldReload) fetch();
+    if (shouldReload) await fetch();
   }
 
   async function deleteUser() {
     const loadingId = toast.loading('Deletando usuário.');
     try {
       await userApi.deleteUser(userToDelete.user!.id);
-      closeDialog(true);
+      await closeDialog(true);
       toast.success('Deletado!', { id: loadingId });
     } catch (error) {
       console.warn(error);
       toast.error('Não foi possível deletar!', { id: loadingId });
     }
   }
+
+  const { data, isLoading, error, fetch } = useTableData({
+    fetchFunction: usersApi.list,
+    schema: zUsers,
+    onError: error => console.error('Erro ao carregar dados:', error),
+    onSuccess: data => console.log('Dados carregados:', data.length),
+  });
+
+  useEffect(() => {
+    (async () => {
+      await fetch();
+    })();
+  }, []);
 
   return (
     <PageBox
@@ -97,67 +105,57 @@ const Users = ({ users, fetch }: { users: TUser[]; fetch: () => void }) => {
         </Button>
       }
     >
-      <Table>
-        <TableCaption>
-          Lista de colaboradores cadastrados: {users.length}
-        </TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className='font-bold'>Foto</TableHead>
-            <TableHead className='font-bold'>Nome</TableHead>
-            <TableHead className='font-bold'>E-mail</TableHead>
-            <TableHead className='w-[100px] font-bold'>Ações</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody className={'cursor-default'}>
-          {users.map((user, index) => (
-            <TableRow key={index}>
-              <TableCell width={100}>
-                {user.picture && (
-                  <Image
-                    src={user.picture}
-                    alt={'Foto de perfil do usuário'}
-                    className={'rounded-full w-8 h-8'}
-                    width={40}
-                    height={40}
-                  />
-                )}
-              </TableCell>
-              <TableCell>{user.userName}</TableCell>
-              <TableCell>{user.email}</TableCell>
-              <TableCell>
-                <Button
-                  variant='ghost'
-                  className={'cursor-pointer'}
-                  size='icon'
-                  onClick={() => openEditSquadUserDialog(user)}
-                  title={'Times'}
-                >
-                  <ShieldHalf className='h-4 w-4' />
-                </Button>
-                <Button
-                  variant='ghost'
-                  className={'cursor-pointer'}
-                  size='icon'
-                  onClick={() => openEditDialog(user)}
-                  title={'Editar'}
-                >
-                  <Pencil className='h-4 w-4' />
-                </Button>
-                <Button
-                  variant='ghost'
-                  className={'cursor-pointer'}
-                  size='icon'
-                  onClick={() => openDeleteDialog(user)}
-                  title={'Deletar'}
-                >
-                  <Trash className='h-4 w-4' />
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <DragonTable
+        data={data}
+        columns={[
+          {
+            header: { label: 'Foto' },
+            html: data => (
+              <div>
+                <Image
+                  src={data.picture?.length ? data.picture : emptyProfilePic}
+                  alt={'Foto de perfil do usuário'}
+                  className={'rounded-full w-8 h-8'}
+                  width={40}
+                  height={40}
+                />
+              </div>
+            ),
+          },
+          {
+            header: { label: 'Nome' },
+            accessor: 'userName',
+          },
+          {
+            header: { label: 'E-mail' },
+            accessor: 'email',
+          },
+          {
+            header: { label: 'Ações' },
+            width: '80px',
+            buttons: [
+              {
+                title: 'Times',
+                action: arg => openEditSquadUserDialog(arg),
+                icon: <ShieldHalf className='h-4 w-4' />,
+              },
+              {
+                title: 'Editar',
+                action: arg => openEditDialog(arg),
+                icon: <Pencil className='h-4 w-4' />,
+              },
+              {
+                title: 'Deletar',
+                action: arg => openDeleteDialog(arg),
+                icon: <Trash className='h-4 w-4' />,
+              },
+            ],
+          },
+        ]}
+        isLoading={isLoading}
+        error={error}
+        emptyMessage='Nenhum usuário cadastrado...'
+      />
 
       {userToEdit.isOpen && (
         <EditUser

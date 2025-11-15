@@ -248,9 +248,10 @@ export type SpinnerProps = LucideProps & {
     | 'ring'
     | 'bars'
     | 'infinite';
+  text?: string;
 };
 
-export const Spinner = ({ variant, ...props }: SpinnerProps) => {
+export const Spinner = ({ variant, text, ...props }: SpinnerProps) => {
   let loader = <Default {...props} />;
   switch (variant) {
     case 'circle':
@@ -275,8 +276,9 @@ export const Spinner = ({ variant, ...props }: SpinnerProps) => {
       loader = <Infinite {...props} />;
   }
   return (
-    <div className={'w-full h-full flex justify-center items-center'}>
+    <div className={'w-full h-full flex flex-col justify-center items-center'}>
       {loader}
+      {text && text}
     </div>
   );
 };
