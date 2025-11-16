@@ -1,25 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PageBox from '@/app/components/page-box';
-import { TSquad } from '@/app/schemas/squads.zod';
+import { TSquad, zSquads } from '@/app/schemas/squads.zod';
 import { Button } from '@/components/ui/button';
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
-import { Pencil, Trash, Users } from 'lucide-react';
 import EditSquad from '@/app/components/edit-squad.tsx';
 import { AlertConfirmDialog } from '@/app/components/alert-confirm-dialog.tsx';
 import { squadsApi } from '@/app/api/squads';
 import Image from 'next/image';
 import EditUsersSquad from '@/app/components/edit-users-squad.tsx';
 import { toast } from 'sonner';
+import DragonTable from '@/components/ui/table/dragon-table';
+import emptyProfilePic from '@assets/empty-states/empty_profile.png';
+import { useQuery } from '@/app/hooks/use-query';
+import { Pencil, Trash, Users } from 'lucide-react';
 
-const Squads = ({ squads, fetch }: { squads: TSquad[]; fetch: () => void }) => {
+const Squads = () => {
   const [usersSquadToEdit, setUsersSquadToEdit] = useState<{
     isOpen: boolean;
     squad: TSquad | null;
@@ -44,6 +38,20 @@ const Squads = ({ squads, fetch }: { squads: TSquad[]; fetch: () => void }) => {
     squad: null,
   });
 
+  const {
+    data: squads,
+    fetch,
+    isLoading,
+  } = useQuery({
+    fetchFunction: squadsApi.list,
+    schema: zSquads,
+    onError: error => console.log(error),
+  });
+
+  useEffect(() => {
+    (async () => fetch())();
+  }, []);
+
   function openSquadUsersDialog(squad: TSquad) {
     setUsersSquadToEdit({
       isOpen: true,
@@ -65,18 +73,18 @@ const Squads = ({ squads, fetch }: { squads: TSquad[]; fetch: () => void }) => {
     });
   }
 
-  function closeDialogs(shouldReload: boolean = false) {
+  async function closeDialogs(shouldReload: boolean = false) {
     setSquadToEdit({ isOpen: false, squad: null });
     setSquadToDelete({ isOpen: false, squad: null });
     setUsersSquadToEdit({ isOpen: false, squad: null });
-    if (shouldReload) fetch();
+    if (shouldReload) await fetch();
   }
 
   async function deleteSquad() {
     const loadingId = toast.loading('Deletando o time');
     try {
       await squadsApi.deleteSquad(squadToDelete.squad!.id);
-      closeDialogs(true);
+      await closeDialogs(true);
       toast.success('Time deletado!', { id: loadingId });
     } catch (error) {
       console.warn(error);
@@ -97,72 +105,70 @@ const Squads = ({ squads, fetch }: { squads: TSquad[]; fetch: () => void }) => {
         </Button>
       }
     >
-      <Table>
-        <TableCaption>Lista de times cadastrados: {squads.length}</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className='font-bold'>Logo</TableHead>
-            <TableHead className='font-bold'>Nome</TableHead>
-            <TableHead className='font-bold'>
-              <span>Pontos</span>
-            </TableHead>
-            <TableHead className='w-[100px] font-bold'>Ações</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody className={'cursor-default'}>
-          {squads.map((squad, index) => (
-            <TableRow key={index}>
-              <TableCell width={100}>
-                {squad.logo && (
-                  <Image
-                    src={squad.logo}
-                    alt={'Logo da squad'}
-                    width={40}
-                    height={40}
-                  />
-                )}
-              </TableCell>
-              <TableCell>{squad.name}</TableCell>
-              <TableCell>{squad.score}</TableCell>
-              <TableCell>
-                <Button
-                  variant='ghost'
-                  className={'cursor-pointer'}
-                  size='icon'
-                  onClick={() => openSquadUsersDialog(squad)}
-                >
-                  <Users className='h-4 w-4' />
-                </Button>
-                <Button
-                  variant='ghost'
-                  className={'cursor-pointer'}
-                  size='icon'
-                  onClick={() => openEditDialog(squad)}
-                >
-                  <Pencil className='h-4 w-4' />
-                </Button>
-                <Button
-                  variant='ghost'
-                  className={'cursor-pointer'}
-                  size='icon'
-                  onClick={() => openDeleteDialog(squad)}
-                >
-                  <Trash className='h-4 w-4' />
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <DragonTable
+        data={squads}
+        columns={[
+          {
+            header: { label: 'Logo' },
+            html: squad => {
+              return (
+                <Image
+                  src={squad?.logo?.length ? squad.logo : emptyProfilePic}
+                  alt={'Logo da squad'}
+                  width={40}
+                  height={40}
+                />
+              );
+            },
+          },
+          {
+            header: { label: 'Nome' },
+            accessor: 'name',
+          },
+          {
+            header: { label: 'Pontos' },
+            accessor: 'score',
+          },
+          {
+            header: { label: 'Ações' },
+            width: '100px',
+            buttons: [
+              {
+                title: 'Editar usuários do time',
+                icon: <Users className='h-4 w-4' />,
+                action: squad => openSquadUsersDialog(squad),
+              },
+              {
+                title: 'Editar time',
+                icon: <Pencil className='h-4 w-4' />,
+                action: squad => openEditDialog(squad),
+              },
+              {
+                title: 'Remover time',
+                icon: <Trash className='h-4 w-4' />,
+                action: squad => openDeleteDialog(squad),
+              },
+            ],
+          },
+        ]}
+        isLoading={isLoading}
+      />
+
       {squadToEdit.isOpen && (
-        <EditSquad squad={squadToEdit.squad} close={() => closeDialogs(true)} />
+        <EditSquad
+          squadToEdit={squadToEdit.squad}
+          close={closeDialogs}
+          onSuccess={fetch}
+        />
       )}
+
       {usersSquadToEdit.isOpen && (
         <EditUsersSquad
           squadId={usersSquadToEdit.squad!.id}
           close={closeDialogs}
         />
       )}
+
       <AlertConfirmDialog
         isOpen={squadToDelete.isOpen}
         title={'Tem certeza que deseja deletar o time?'}

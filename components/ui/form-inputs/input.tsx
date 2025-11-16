@@ -19,7 +19,7 @@ function Input<T extends FieldValues>({
   error,
   rules,
   maskFormatter,
-  remote,
+  options,
   action,
   ...props
 }: React.ComponentProps<'input'> & {
@@ -35,11 +35,7 @@ function Input<T extends FieldValues>({
     onSubmitButton: () => void;
   };
   maskFormatter?: (value: string) => string;
-  remote?: {
-    fetchFunction: () =>
-      | Promise<{ value: number; label: string }[]>
-      | { value: number; label: string }[];
-  };
+  options?: { value: number; label: string }[];
 }) {
   let field: ReactNode;
 
@@ -72,7 +68,7 @@ function Input<T extends FieldValues>({
           control={control}
           name={name}
           action={action}
-          remote={remote}
+          options={options}
           placeholder={props.placeholder}
         />
       );

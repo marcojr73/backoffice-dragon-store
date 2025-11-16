@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Input } from '@/components/ui/form-inputs/input';
 import { Button } from '@/components/ui/button';
@@ -20,12 +20,16 @@ import NotFound from '@/app/compositions/not-found';
 import { toast } from 'sonner';
 
 const EditSquad = ({
-  squad,
+  squadToEdit,
   close,
+  onSuccess,
 }: {
-  squad: TSquad | null;
+  squadToEdit: TSquad | null;
   close: (shouldReload?: boolean) => void;
+  onSuccess?: () => void;
 }) => {
+  const [squad, setSquad] = useState<TSquad | null>(squadToEdit);
+  const [options, setOptions] = useState<{ label: string; value: number }[]>();
   const { control, handleSubmit } = useForm<TSquad>({
     defaultValues: {
       name: squad?.name ?? '',
@@ -53,15 +57,23 @@ const EditSquad = ({
     (async () => fetch())();
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      await getUsers();
+    })();
+  }, [users]);
+
   async function getUsers() {
     if (!squad) {
       return [];
     }
     const response = await squadsApi.listUsersSquad(squad?.id);
-    return response.usersSquad.map(user => ({
-      value: user.id,
-      label: user.userName,
-    }));
+    setOptions(
+      response.usersSquad.map(user => ({
+        value: user.id,
+        label: user.userName,
+      }))
+    );
   }
 
   const onSubmit = async (data: TSquad) => {
@@ -69,10 +81,13 @@ const EditSquad = ({
     try {
       if (squad !== null) {
         await squadsApi.patch(data, squad?.id);
+        toast.success('Time atualizado!', { id: loadingId });
       } else {
-        await squadsApi.create(data);
+        const response = await squadsApi.create(data);
+        setSquad({ ...data, id: response.id });
+        toast.success('Time criado!', { id: loadingId });
       }
-      toast.success('Time atualizado!', { id: loadingId });
+      onSuccess && onSuccess();
     } catch (error) {
       toast.error('Erro ao atualizar time', { id: loadingId });
       console.error('Erro ao salvar:', error);
@@ -111,7 +126,7 @@ const EditSquad = ({
                 label={'Lider do time'}
                 placeholder='Clique para selecionar'
                 type={'typeahead'}
-                remote={{ fetchFunction: getUsers }}
+                options={options}
                 control={control}
                 name={'squadLeaderId'}
               />

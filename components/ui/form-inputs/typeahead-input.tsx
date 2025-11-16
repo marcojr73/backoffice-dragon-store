@@ -30,7 +30,7 @@ const TypeaheadInput = <T extends FieldValues>({
   className,
   rules,
   maskFormatter,
-  remote,
+  options = [],
   action,
   ...props
 }: React.ComponentProps<'input'> & {
@@ -45,29 +45,20 @@ const TypeaheadInput = <T extends FieldValues>({
     'disabled' | 'valueAsNumber' | 'valueAsDate' | 'setValueAs'
   >;
   maskFormatter?: (value: string) => string;
-  remote?: {
-    fetchFunction: () =>
-      | Promise<{ value: number; label: string }[]>
-      | { value: number; label: string }[];
-  };
+  options?: { value: number; label: string }[];
 }) => {
   const [open, setOpen] = React.useState(false);
-  const [options, setOptions] = useState<{ value: number; label: string }[]>(
-    []
-  );
-  const [optionsFiltered, setOptionsFiltered] = useState<
-    { value: number; label: string }[]
-  >([]);
+  const [optionsFiltered, setOptionsFiltered] =
+    useState<{ value: number; label: string }[]>(options);
+
+  console.log(optionsFiltered);
 
   useEffect(() => {
-    (async () => {
-      if (remote) {
-        const response = await remote.fetchFunction();
-        setOptions(response);
-        setOptionsFiltered(response);
-      }
-    })();
-  }, []);
+    if (!options?.length) {
+      return;
+    }
+    setOptionsFiltered(options);
+  }, [options]);
 
   return (
     <Controller

@@ -1,28 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PageBox from '@/app/components/page-box';
-import { TProduct } from '@/app/schemas/products.zod';
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
+import { TProduct, zProducts } from '@/app/schemas/products.zod';
 import { Button } from '@/components/ui/button';
 import { Coins, Pencil, Trash } from 'lucide-react';
 import EditProduct from '@/app/components/edit-product.tsx';
 import { AlertConfirmDialog } from '@/app/components/alert-confirm-dialog.tsx';
 import { productsApi } from '@/app/api/products';
+import DragonTable from '@/components/ui/table/dragon-table';
+import { useQuery } from '@/app/hooks/use-query';
 
-const Products = ({
-  products,
-  fetch,
-}: {
-  products: TProduct[];
-  fetch: () => void;
-}) => {
+const Products = () => {
   const [productToEdit, setProductToEdit] = useState<{
     isOpen: boolean;
     product: TProduct | null;
@@ -72,6 +59,54 @@ const Products = ({
     }
   }
 
+  const {
+    data: products,
+    fetch,
+    isLoading,
+  } = useQuery({
+    fetchFunction: productsApi.get,
+    schema: zProducts,
+    onError: error => console.log(error),
+  });
+
+  useEffect(() => {
+    (async () => fetch())();
+  }, []);
+
+  const columns = [
+    {
+      accessor: 'name' as keyof TProduct,
+      header: { label: 'Nome' },
+    },
+    {
+      accessor: 'value' as keyof TProduct,
+      header: {
+        label: (
+          <div className={'flex items-center gap-2'}>
+            <span>Valor</span>
+            <Coins />
+          </div>
+        ) as any,
+      },
+    },
+    {
+      header: { label: 'Ações' },
+      width: '100px',
+      buttons: [
+        {
+          title: 'Editar produto',
+          icon: <Pencil className='h-4 w-4' />,
+          action: (product: TProduct) => openEditDialog(product),
+        },
+        {
+          title: 'Deletar produto',
+          icon: <Trash className='h-4 w-4' />,
+          action: (product: TProduct) => openDeleteDialog(product),
+        },
+      ],
+    },
+  ];
+
   return (
     <PageBox
       title={'Recompensas'}
@@ -85,58 +120,23 @@ const Products = ({
         </Button>
       }
     >
-      <Table>
-        <TableCaption>
-          Lista de recompensas cadastrados: {products.length}
-        </TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className='font-bold'>Nome</TableHead>
-            <TableHead className='font-bold'>
-              <div className={'flex items-center gap-2'}>
-                <span>Valor</span>
-                <Coins />
-              </div>
-            </TableHead>
-            <TableHead className='w-[100px] font-bold'>Ações</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody className={'cursor-default'}>
-          {products.map((product, index) => (
-            <TableRow key={index}>
-              <TableCell>{product.name}</TableCell>
-              <TableCell>{product.value}</TableCell>
-              <TableCell>
-                <Button
-                  variant='ghost'
-                  className={'cursor-pointer'}
-                  size='icon'
-                  onClick={() => openEditDialog(product)}
-                >
-                  <Pencil className='h-4 w-4' />
-                </Button>
-                <Button
-                  variant='ghost'
-                  className={'cursor-pointer'}
-                  size='icon'
-                  onClick={() => openDeleteDialog(product)}
-                >
-                  <Trash className='h-4 w-4' />
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <DragonTable
+        data={products}
+        columns={columns}
+        isLoading={isLoading}
+        emptyMessage='Nenhuma recompensa cadastrada'
+      />
+
       {Boolean(productToEdit.isOpen) && (
         <EditProduct product={productToEdit.product} close={closeEditDialog} />
       )}
+
       <AlertConfirmDialog
         isOpen={productToDelete.isOpen}
-        title={'Tem certeza que deseja deletar o usuário?'}
+        title={'Tem certeza que deseja deletar o produto?'}
         description={
-          'Esta ação não pode ser desfeita. Isso excluirá permanentemente sua' +
-          'conta e removerá seus dados de nossos servidores.'
+          'Esta ação não pode ser desfeita. Isso excluirá permanentemente o produto' +
+          ' e removerá seus dados de nossos servidores.'
         }
         onConfirm={deleteProduct}
         close={closeDeleteDialog}

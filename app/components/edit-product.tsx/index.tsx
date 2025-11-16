@@ -33,10 +33,22 @@ const EditProduct = ({
       description: product?.description ?? '',
       value: product?.value ?? 0,
       picture: product?.picture ?? '',
-      availableStartAt: parseDate(product?.availableStartAt ?? null),
-      availableEndAt: parseDate(product?.availableEndAt ?? null),
+      availableStartAt: product?.availableStartAt
+        ? parseDate(product?.availableStartAt)
+        : parseDate(getTodayIsoString()),
+      availableEndAt: product?.availableEndAt
+        ? parseDate(product?.availableEndAt)
+        : undefined,
     },
   });
+
+  function getTodayIsoString() {
+    const today = new Date();
+    today.setUTCHours(0, 0, 0, 0);
+    return today.toISOString();
+  }
+
+  console.log(product?.availableStartAt);
 
   function parseDate(date: string | null) {
     if (!date) return null;
@@ -73,6 +85,13 @@ const EditProduct = ({
           <Input
             label={'Nome'}
             placeholder='Nome do produto'
+            rules={{
+              required: {
+                value: true,
+                message: errorMessages.requiredField,
+              },
+            }}
+            error={errors.name?.message}
             control={control}
             name={'name'}
           />
@@ -103,9 +122,13 @@ const EditProduct = ({
             type={'date'}
             control={control}
             rules={{
-              validate: arg =>
-                validations.isDateAfterThePresent(arg) ||
-                errorMessages.dateShouldNotInThePast,
+              validate: arg => {
+                if (!arg) return true;
+                return (
+                  validations.isDateAfterThePresent(arg) ||
+                  errorMessages.dateShouldNotInThePast
+                );
+              },
             }}
             error={errors.availableStartAt?.message}
             name={'availableStartAt'}
@@ -117,14 +140,18 @@ const EditProduct = ({
             control={control}
             name={'availableEndAt'}
             rules={{
-              validate: targetDate =>
-                validations.isDateAfterThan(
-                  targetDate,
-                  getValues('availableStartAt')
-                ) ||
-                errorMessages.dateShouldNotAfterThan(
-                  getValues('availableStartAt') as string
-                ),
+              validate: targetDate => {
+                if (!targetDate) return true;
+                return (
+                  validations.isDateAfterThan(
+                    targetDate,
+                    getValues('availableStartAt')
+                  ) ||
+                  errorMessages.dateShouldNotAfterThan(
+                    getValues('availableStartAt') as string
+                  )
+                );
+              },
             }}
             error={errors.availableEndAt?.message}
           />

@@ -113,6 +113,10 @@ function CellValue<T>({ data, column }: { data: T; column: TColumn<T> }) {
 
     const value = data[column.accessor];
 
+    if (typeof value === 'number') {
+      return value.toString();
+    }
+
     if (typeof value === 'string') {
       return value;
     }

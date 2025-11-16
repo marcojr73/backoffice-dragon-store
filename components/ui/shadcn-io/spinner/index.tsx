@@ -252,7 +252,7 @@ export type SpinnerProps = LucideProps & {
 };
 
 export const Spinner = ({ variant, text, ...props }: SpinnerProps) => {
-  let loader = <Default {...props} />;
+  let loader = <Circle {...props} />;
   switch (variant) {
     case 'circle':
       loader = <Circle {...props} />;

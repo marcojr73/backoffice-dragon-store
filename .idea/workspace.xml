@@ -6,12 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="f25ec39c-1671-44be-acdd-ce390bb2eb7b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/backoffice/colaboradores/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/backoffice/colaboradores/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/squads.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/squads.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/backoffice/recompensas/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/backoffice/recompensas/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/backoffice/times/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/backoffice/times/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/edit-product.tsx/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/edit-product.tsx/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/edit-squad.tsx/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/edit-squad.tsx/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/components/edit-user-squads.tsx/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/edit-user-squads.tsx/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/compositions/not-found.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/compositions/not-found.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/compositions/users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/compositions/users.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/hooks/use-query.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/hooks/use-query.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/edit-users-squad.tsx/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/edit-users-squad.tsx/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/compositions/products.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/compositions/products.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/compositions/squads.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/compositions/squads.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/validations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/validations.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/form-inputs/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/form-inputs/typeahead-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/form-inputs/typeahead-input.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ui/shadcn-io/spinner/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/shadcn-io/spinner/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/table/dragon-table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/table/dragon-table.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +170,10 @@
       <workItem from="1763070709081" duration="7152000" />
       <workItem from="1763080275403" duration="1287000" />
       <workItem from="1763152838661" duration="5287000" />
-      <workItem from="1763160783147" duration="5850000" />
+      <workItem from="1763160783147" duration="6015000" />
+      <workItem from="1763204868129" duration="7702000" />
+      <workItem from="1763232133806" duration="1819000" />
+      <workItem from="1763324716452" duration="4369000" />
     </task>
     <servers />
   </component>

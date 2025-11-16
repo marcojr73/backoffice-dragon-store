@@ -1,8 +1,14 @@
 function isDateAfterThePresent(arg: string | number | null) {
-  if (!arg) return false;
-  const selectedDate = new Date(arg);
+  if (!arg || typeof arg !== 'string') return false;
+  if (!arg.match(/^\d{4}-\d{2}-\d{2}$/)) return false;
+
+  const [year, month, day] = arg.split('-').map(Number);
+  const selectedDate = new Date(year, month - 1, day); // month é 0-indexado
   const today = new Date();
+
+  selectedDate.setHours(0, 0, 0, 0);
   today.setHours(0, 0, 0, 0);
+
   return selectedDate >= today;
 }
 
