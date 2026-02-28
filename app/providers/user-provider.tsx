@@ -4,12 +4,15 @@ import { createContext, ReactNode, useContext, useEffect } from 'react';
 import { TUser, zUser } from '@/app/schemas/user.zod';
 import { useQuery } from '@/app/hooks/use-query';
 import { userApi } from '@/app/api/user';
+import useSession from '@/app/hooks/use-session';
 
 export const UserContext = createContext<TValue>({
   user: null,
 });
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
+  const { session } = useSession();
+
   const { data, fetch } = useQuery({
     schema: zUser,
     fetchFunction: userApi.get,
@@ -19,8 +22,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   });
 
   useEffect(() => {
-    (async () => await fetch())();
-  }, []);
+    if (!session) return;
+    (async () => await fetch({ id: session.id.toString() }))();
+  }, [session]);
 
   return (
     data && (

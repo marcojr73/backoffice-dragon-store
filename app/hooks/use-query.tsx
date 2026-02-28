@@ -32,7 +32,7 @@ export function useQuery<T, K = undefined>({
   onSuccess,
   onError,
 }: {
-  fetchFunction: (args: K | undefined) => Promise<T>;
+  fetchFunction: (args?: K) => Promise<T>;
   schema: z.ZodType<T>;
   params?: K;
   onSuccess?: (arg: T) => Promise<void> | void;
@@ -46,7 +46,7 @@ export function useQuery<T, K = undefined>({
 
   const previousParamsRef = useRef<K>(undefined);
 
-  async function fetch() {
+  async function fetch(params?: K) {
     previousParamsRef.current = params;
 
     const fetchData = async () => {
@@ -54,7 +54,6 @@ export function useQuery<T, K = undefined>({
 
       try {
         const result = await fetchFunction(params);
-        console.log(result);
         const validationResult = schema.safeParse(result);
 
         if (!validationResult.success) {

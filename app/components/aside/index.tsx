@@ -8,10 +8,17 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { Inbox, LucideProps, Settings, Tag, User, Users } from 'lucide-react';
+import {
+  Inbox,
+  LucideProps,
+  Settings,
+  Store,
+  Tag,
+  User,
+  Users,
+} from 'lucide-react';
 import ToggleTheme from '@/app/components/toggle-theme/toggle-theme';
 import Image from 'next/image';
 import logo from '@assets/logos/dragon.png';
@@ -26,9 +33,9 @@ function Aside() {
     >;
   }[] = [
     {
-      title: 'Marca',
-      url: '/backoffice/marca',
-      icon: Tag,
+      title: 'Loja',
+      url: '/backoffice/loja',
+      icon: Store,
     },
     {
       title: 'Recompensas',

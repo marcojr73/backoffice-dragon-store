@@ -63,10 +63,12 @@ function Input<T extends FieldValues>({
       );
       break;
     case 'typeahead':
+    case 'select':
       field = (
         <TypeaheadInput
           control={control}
           name={name}
+          type={type}
           action={action}
           options={options}
           placeholder={props.placeholder}

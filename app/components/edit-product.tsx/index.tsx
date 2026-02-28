@@ -48,8 +48,6 @@ const EditProduct = ({
     return today.toISOString();
   }
 
-  console.log(product?.availableStartAt);
-
   function parseDate(date: string | null) {
     if (!date) return null;
     const d = new Date(date);
@@ -57,7 +55,6 @@ const EditProduct = ({
   }
 
   const onSubmit = async (data: TProduct) => {
-    console.log(data);
     try {
       if (product !== null) {
         await productsApi.update(data, product.id);

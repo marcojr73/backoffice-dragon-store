@@ -9,11 +9,7 @@ export const zUser = z.object({
   coins: z.number().optional(),
   gas: z.number().optional(),
   password: z.string().optional(),
-  organization: z.object({
-    id: z.number(),
-    name: z.string(),
-    logo: z.string().optional().nullable(),
-  }),
+  organizationId: z.number(),
 });
 
 export const zUsers = z.array(zUser);

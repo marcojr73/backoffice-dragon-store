@@ -1,8 +1,11 @@
 import apiService from '@/app/api/index';
 import { TOrganization } from '@/app/schemas/organization.zod';
 
-async function update(data: TOrganization): Promise<{ id: string }> {
-  const response = await apiService.put('/organization', data);
+async function update(
+  data: TOrganization,
+  id: number
+): Promise<{ id: string }> {
+  const response = await apiService.patch(`/organization/${id}`, data);
   return response.data;
 }
 

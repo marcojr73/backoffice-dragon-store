@@ -21,8 +21,6 @@ const Page = () => {
     (async () => fetch())();
   }, []);
 
-  console.log(data);
-
   if (data) {
     return <Organization organization={data} />;
   }

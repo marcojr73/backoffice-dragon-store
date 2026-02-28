@@ -3,8 +3,8 @@
 import apiService from '@/app/api/index';
 import { TUser } from '@/app/schemas/user.zod';
 
-async function get(): Promise<TUser> {
-  const response = await apiService.get('/user');
+async function get(arg?: { id: string }): Promise<TUser> {
+  const response = await apiService.get(`/user/${arg?.id}`);
   return response.data;
 }
 

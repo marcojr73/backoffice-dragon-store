@@ -32,6 +32,7 @@ const TypeaheadInput = <T extends FieldValues>({
   maskFormatter,
   options = [],
   action,
+  type,
   ...props
 }: React.ComponentProps<'input'> & {
   error?: string;
@@ -85,29 +86,31 @@ const TypeaheadInput = <T extends FieldValues>({
             </PopoverTrigger>
             <PopoverContent className='w-[462px] p-0'>
               <Command>
-                <div
-                  data-slot='command-input-wrapper'
-                  className='flex h-9 items-center gap-2 border-b px-3'
-                >
-                  <SearchIcon className='size-4 shrink-0 opacity-50' />
-                  <input
-                    data-slot='command-input'
-                    placeholder='Buscar'
-                    className={cn(
-                      'placeholder:text-muted-foreground flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-hidden disabled:cursor-not-allowed disabled:opacity-50',
-                      className
-                    )}
-                    onChange={event => {
-                      setOptionsFiltered(
-                        options.filter(option => {
-                          return option.label
-                            .toLowerCase()
-                            .includes(event.target.value.toLowerCase());
-                        })
-                      );
-                    }}
-                  />
-                </div>
+                {type === 'typeahead' && (
+                  <div
+                    data-slot='command-input-wrapper'
+                    className='flex h-9 items-center gap-2 border-b px-3'
+                  >
+                    <SearchIcon className='size-4 shrink-0 opacity-50' />
+                    <input
+                      data-slot='command-input'
+                      placeholder='Buscar'
+                      className={cn(
+                        'placeholder:text-muted-foreground flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-hidden disabled:cursor-not-allowed disabled:opacity-50',
+                        className
+                      )}
+                      onChange={event => {
+                        setOptionsFiltered(
+                          options.filter(option => {
+                            return option.label
+                              .toLowerCase()
+                              .includes(event.target.value.toLowerCase());
+                          })
+                        );
+                      }}
+                    />
+                  </div>
+                )}
                 <CommandList>
                   <CommandEmpty>Nenhuma opção encontrada.</CommandEmpty>
                   <CommandGroup>
